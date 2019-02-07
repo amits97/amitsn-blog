@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Container, Card } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import TimeAgo from "javascript-time-ago"
 import en from "javascript-time-ago/locale/en"
 import english from "javascript-time-ago/locale/en"
@@ -37,11 +38,15 @@ export default class Home extends Component {
   renderPostsList(posts) {
     return [].concat(posts).map(
       (post, i) =>
-        <Container>
+        <Container key={post.postId}>
           <Card>
             <Card.Body>
               <Card.Title>
-                <b>{"Post " + (i+1)}</b>
+                <LinkContainer
+                  to={`/posts/${post.postId}`}
+                >
+                  <b>{"Post " + (i+1)}</b>
+                </LinkContainer>
               </Card.Title>
               <Card.Text>
                 {post.content}
