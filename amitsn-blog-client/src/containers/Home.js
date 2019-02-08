@@ -45,7 +45,7 @@ export default class Home extends Component {
                 <LinkContainer
                   to={`/posts/${post.postId}`}
                 >
-                  <b>{"Post " + (i+1)}</b>
+                  <a href="#"><b>{"Post " + (i+1)}</b></a>
                 </LinkContainer>
               </Card.Title>
               <Card.Text>

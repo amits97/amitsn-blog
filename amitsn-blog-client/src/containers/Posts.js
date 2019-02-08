@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import API from "aws-amplify";
+import { API } from "aws-amplify";
 
 export default class Posts extends Component {
   constructor(props) {
