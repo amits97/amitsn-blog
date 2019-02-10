@@ -35,6 +35,7 @@ class App extends Component {
   }
 
   handleLogout = async event => {
+    event.preventDefault();
     await Auth.signOut();
   
     this.userHasAuthenticated(false);

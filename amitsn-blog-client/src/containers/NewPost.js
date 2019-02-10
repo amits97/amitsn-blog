@@ -71,7 +71,6 @@ export default class NewPost extends Component {
                   <Form.Control as="textarea" placeholder="Post content" onChange={this.handleChange} value={this.state.content} />
                 </Form.Group>
                 <LoaderButton
-                  block
                   variant="primary"
                   disabled={!this.validateForm()}
                   type="submit"
