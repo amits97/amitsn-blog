@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form } from "react-bootstrap";
+import { Form, Card } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import { API } from "aws-amplify";
 import "./NewPost.css";
@@ -54,28 +54,35 @@ export default class NewPost extends Component {
   render() {
     return (
       <div className="NewPost">
-        <h3>New Post</h3>
-        <hr />
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group controlId="title">
-            <Form.Label>Title</Form.Label>
-            <Form.Control type="text" placeholder="Post title" onChange={this.handleChange} value={this.state.title} />
-          </Form.Group>
+        <Card>
+          <Card.Body>
+            <Card.Title>
+              <h3>New Post</h3>
+            </Card.Title>
+            <Card.Text>
+              <Form onSubmit={this.handleSubmit}>
+                <Form.Group controlId="title">
+                  <Form.Label>Title</Form.Label>
+                  <Form.Control type="text" placeholder="Post title" onChange={this.handleChange} value={this.state.title} />
+                </Form.Group>
 
-          <Form.Group controlId="content">
-            <Form.Label>Content</Form.Label>
-            <Form.Control as="textarea" placeholder="Post content" onChange={this.handleChange} value={this.state.content} />
-          </Form.Group>
-          <LoaderButton
-            block
-            variant="primary"
-            disabled={!this.validateForm()}
-            type="submit"
-            isLoading={this.state.isLoading}
-            text="Create"
-            loadingText="Creating…"
-          />
-        </Form>
+                <Form.Group controlId="content">
+                  <Form.Label>Content</Form.Label>
+                  <Form.Control as="textarea" placeholder="Post content" onChange={this.handleChange} value={this.state.content} />
+                </Form.Group>
+                <LoaderButton
+                  block
+                  variant="primary"
+                  disabled={!this.validateForm()}
+                  type="submit"
+                  isLoading={this.state.isLoading}
+                  text="Create"
+                  loadingText="Creating…"
+                />
+              </Form>
+            </Card.Text>
+          </Card.Body>
+        </Card>
       </div>
     );
   }

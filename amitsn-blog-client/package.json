@@ -19,6 +19,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "aws s3 sync build/ s3://amitsn-blog-client --delete",
+    "postdeploy": "aws cloudfront create-invalidation --distribution-id E3EJ272XE26PWO --paths '/*'",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

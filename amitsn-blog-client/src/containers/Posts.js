@@ -1,11 +1,17 @@
 import React, { Component } from "react";
+import { Card } from "react-bootstrap";
+import TimeAgo from "javascript-time-ago"
+import en from "javascript-time-ago/locale/en"
+import english from "javascript-time-ago/locale/en"
 import { API } from "aws-amplify";
+import "./Posts.css";
 
 export default class Posts extends Component {
   constructor(props) {
     super(props);
 
-    this.file = null;
+    TimeAgo.addLocale(en);
+    this.timeAgo = new TimeAgo('en-US');
 
     this.state = {
       post: null,
@@ -31,12 +37,30 @@ export default class Posts extends Component {
     return API.get("posts", `/posts/${this.props.match.params.id}`);
   }
 
+  renderPost() {
+    if(this.state.post) {
+      return(
+        <Card>
+          <Card.Body>
+            <Card.Title>
+              <h3>{this.state.post.title}</h3>
+            </Card.Title>
+            <Card.Text>
+              {this.state.post.content}
+            </Card.Text>
+            <small className="text-muted">
+              {this.timeAgo.format(new Date(this.state.post.createdAt), english.long)}
+            </small>
+          </Card.Body>
+        </Card>
+      );
+    }
+  }
+
   render() {
     return (
       <div className="Posts">
-        <div className="post">
-          { this.state.content }
-        </div>
+        { this.renderPost() }
       </div>
     );
   }

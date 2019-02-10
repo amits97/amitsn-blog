@@ -45,7 +45,10 @@ class App extends Component {
     if(this.state.isAuthenticated) {
       return(
         <React.Fragment>
-          <Nav.Link onClick={this.handleLogout}>Logout</Nav.Link>
+          <LinkContainer exact to="/posts/new">
+            <a href="#/" className="nav-link">New Post</a>
+          </LinkContainer>
+          <a href="#/" className="nav-link" onClick={this.handleLogout}>Logout</a>
         </React.Fragment>
       );
     }
@@ -70,10 +73,10 @@ class App extends Component {
             <Navbar.Collapse className="justify-content-end">
               <Nav>
                 <LinkContainer exact to="/">
-                  <Nav.Link>Home</Nav.Link>
+                  <a href="#/" className="nav-link">Home</a>
                 </LinkContainer>
                 <LinkContainer exact to="/about">
-                  <Nav.Link>About</Nav.Link>
+                  <a href="#/" className="nav-link">About</a>
                 </LinkContainer>
                 { this.authenticatedOptions() }
               </Nav>
