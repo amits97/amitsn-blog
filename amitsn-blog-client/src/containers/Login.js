@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FormGroup, FormControl, FormLabel } from "react-bootstrap";
+import { Alert, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import { Auth } from "aws-amplify";
 import LoaderButton from "../components/LoaderButton";
 import "./Login.css";
@@ -11,7 +11,9 @@ export default class Login extends Component {
     this.state = {
       isLoading: false,
       email: "",
-      password: ""
+      password: "",
+      isErrorState: false,
+      errorMessage: ""
     };
   }
 
@@ -34,8 +36,21 @@ export default class Login extends Component {
       await Auth.signIn(this.state.email, this.state.password);
       this.props.userHasAuthenticated(true);
     } catch (e) {
-      alert(e.message);
-      this.setState({ isLoading: false });
+      this.setState({
+        isLoading: false,
+        isErrorState: true,
+        errorMessage: e.message
+      });
+    }
+  }
+
+  renderError = () => {
+    if(this.state.isErrorState) {
+      return(
+        <Alert variant="danger">
+          {this.state.errorMessage}
+        </Alert>
+      );
     }
   }
 
@@ -43,6 +58,7 @@ export default class Login extends Component {
     return (
       <div className="Login">
         <form onSubmit={this.handleSubmit}>
+          {this.renderError()}
           <FormGroup controlId="email">
             <FormLabel>Email</FormLabel>
             <FormControl
