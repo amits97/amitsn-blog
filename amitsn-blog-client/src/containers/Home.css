@@ -1,15 +1,5 @@
-.Home .lander {
-  padding: 40px 0;
-  text-align: center;
-}
-
-.Home .lander h1 {
-  font-family: 'Karla', sans-serif;
-  font-weight: 700;
-}
-
-.Home .lander p {
-  color: #999;
+.Home {
+  margin: 30px;
 }
 
 .Home .posts h4 {

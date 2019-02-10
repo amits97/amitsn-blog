@@ -45,7 +45,9 @@ export default class Home extends Component {
                 <LinkContainer
                   to={`/posts/${post.postId}`}
                 >
-                  <a href="#"><b>{"Post " + (i+1)}</b></a>
+                  <a href="#/">
+                    <h3>{post.title}</h3>
+                  </a>
                 </LinkContainer>
               </Card.Title>
               <Card.Text>
@@ -72,10 +74,6 @@ export default class Home extends Component {
   render() {
     return (
       <div className="Home">
-        <div className="lander">
-          <h1>AmitSN</h1>
-          <p>Random console logs</p>
-        </div>
         { this.renderPosts() }
       </div>
     );

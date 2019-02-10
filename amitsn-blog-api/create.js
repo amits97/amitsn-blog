@@ -10,6 +10,7 @@ export async function main(event, context) {
       userId: event.requestContext.identity.cognitoIdentityId,
       postId: uuid.v1(),
       content: data.content,
+      title: data.title,
       createdAt: Date.now()
     }
   };

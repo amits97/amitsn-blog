@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FormGroup, FormControl } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import { API } from "aws-amplify";
 import "./NewPost.css";
@@ -12,12 +12,14 @@ export default class NewPost extends Component {
 
     this.state = {
       isLoading: null,
+      title: "",
       content: ""
     };
   }
 
   validateForm() {
-    return this.state.content.length > 0;
+    return this.state.title.length > 0
+          && this.state.content.length > 0;
   }
 
   handleChange = event => {
@@ -33,6 +35,7 @@ export default class NewPost extends Component {
   
     try {
       await this.createPost({
+        title: this.state.title,
         content: this.state.content
       });
       this.props.history.push("/");
@@ -51,24 +54,28 @@ export default class NewPost extends Component {
   render() {
     return (
       <div className="NewPost">
-        <form onSubmit={this.handleSubmit}>
-          <FormGroup controlId="content">
-            <FormControl
-              onChange={this.handleChange}
-              value={this.state.content}
-              as="textarea"
-            />
-          </FormGroup>
+        <h3>New Post</h3>
+        <hr />
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Group controlId="title">
+            <Form.Label>Title</Form.Label>
+            <Form.Control type="text" placeholder="Post title" onChange={this.handleChange} value={this.state.title} />
+          </Form.Group>
+
+          <Form.Group controlId="content">
+            <Form.Label>Content</Form.Label>
+            <Form.Control as="textarea" placeholder="Post content" onChange={this.handleChange} value={this.state.content} />
+          </Form.Group>
           <LoaderButton
             block
-            bsStyle="primary"
+            variant="primary"
             disabled={!this.validateForm()}
             type="submit"
             isLoading={this.state.isLoading}
             text="Create"
             loadingText="Creating…"
           />
-        </form>
+        </Form>
       </div>
     );
   }

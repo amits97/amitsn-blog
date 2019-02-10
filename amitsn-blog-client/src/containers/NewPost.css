@@ -1,8 +1,12 @@
+.NewPost {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
 .NewPost form {
   padding: 15px 0;
 }
 
 .NewPost form textarea {
-  height: 300px;
-  font-size: 24px;
+  height: 250px;
 }

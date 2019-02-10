@@ -14,8 +14,9 @@ export async function main(event, context) {
     },
     // 'UpdateExpression' defines the attributes to be updated
     // 'ExpressionAttributeValues' defines the value in the update expression
-    UpdateExpression: "SET content = :content",
+    UpdateExpression: "SET title = :title SET content = :content",
     ExpressionAttributeValues: {
+      ":title": data.title || null,
       ":content": data.content || null
     },
     // 'ReturnValues' specifies if and how to return the item's attributes,

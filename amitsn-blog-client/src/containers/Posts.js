@@ -32,6 +32,12 @@ export default class Posts extends Component {
   }
 
   render() {
-    return <div className="Posts"></div>;
+    return (
+      <div className="Posts">
+        <div className="post">
+          { this.state.content }
+        </div>
+      </div>
+    );
   }
 }

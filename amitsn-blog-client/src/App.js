@@ -41,6 +41,19 @@ class App extends Component {
     this.props.history.push("/");
   }
 
+  authenticatedOptions = () => {
+    if(this.state.isAuthenticated) {
+      return(
+        <React.Fragment>
+          <LinkContainer exact to="/posts/new">
+            <Nav.Link>New Post</Nav.Link>
+          </LinkContainer>
+          <Nav.Link onClick={this.handleLogout}>Logout</Nav.Link>
+        </React.Fragment>
+      );
+    }
+  }
+
   render() {
     const childProps = {
       isAuthenticated: this.state.isAuthenticated,
@@ -49,28 +62,30 @@ class App extends Component {
 
     return (
       !this.state.isAuthenticating &&
-      <div className="App container">
-        <Navbar bg="light" expand="lg">
-          <Navbar.Brand>
-            <Link to="/">AmitSN</Link>
-          </Navbar.Brand>
-          <Navbar.Toggle />
-          <Navbar.Collapse className="justify-content-end">
-            <Nav>
-              <LinkContainer exact to="/">
-                <Nav.Link>Home</Nav.Link>
-              </LinkContainer>
-              <LinkContainer exact to="/about">
-                <Nav.Link>About</Nav.Link>
-              </LinkContainer>
-              { this.state.isAuthenticated
-                  ? <Nav.Link onClick={this.handleLogout}>Logout</Nav.Link>
-                  : null
-              }
-            </Nav>
-          </Navbar.Collapse>
+      <div className="App">
+        <Navbar bg="dark" variant="dark" expand="lg">
+          <div className="container">
+            <Navbar.Brand>
+              <Link to="/">AmitSN</Link>
+              <small>Random console logs</small>
+            </Navbar.Brand>
+            <Navbar.Toggle />
+            <Navbar.Collapse className="justify-content-end">
+              <Nav>
+                <LinkContainer exact to="/">
+                  <Nav.Link>Home</Nav.Link>
+                </LinkContainer>
+                <LinkContainer exact to="/about">
+                  <Nav.Link>About</Nav.Link>
+                </LinkContainer>
+                { this.authenticatedOptions() }
+              </Nav>
+            </Navbar.Collapse>
+          </div>
         </Navbar>
-        <Routes childProps={childProps} />
+        <div class="container">
+          <Routes childProps={childProps} />
+        </div>
       </div>
     );
   }
