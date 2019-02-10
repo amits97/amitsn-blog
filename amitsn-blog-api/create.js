@@ -11,7 +11,8 @@ export async function main(event, context) {
       postId: uuid.v1(),
       content: data.content,
       title: data.title,
-      createdAt: Date.now()
+      createdAt: Date.now(),
+      postStatus: "LIVE"
     }
   };
 
