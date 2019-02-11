@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Card, Container, Row, Col } from "react-bootstrap";
+import { Form, Row, Col } from "react-bootstrap";
 import ReactMarkdown from "react-markdown";
 import LoaderButton from "../components/LoaderButton";
 import { API } from "aws-amplify";

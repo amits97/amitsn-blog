@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
-import { Redirect } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import TimeAgo from "javascript-time-ago"
 import en from "javascript-time-ago/locale/en"
