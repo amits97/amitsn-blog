@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
+import { Redirect } from "react-router-dom";
 import TimeAgo from "javascript-time-ago"
 import en from "javascript-time-ago/locale/en"
 import english from "javascript-time-ago/locale/en"
@@ -15,45 +16,59 @@ export default class Posts extends Component {
     this.timeAgo = new TimeAgo('en-US');
 
     this.state = {
-      post: null,
-      content: ""
+      posts: [],
+      isLoading: true
     };
   }
 
   async componentDidMount() {
     try {
-      const post = await this.getPost();
-      const { content } = post;
-
+      const posts = await this.posts();
       this.setState({
-        post,
-        content
+        posts: posts,
+        isLoading: false
       });
     } catch (e) {
       alert(e);
     }
   }
 
-  getPost() {
-    return API.get("posts", `/posts/${this.props.match.params.id}`);
+  posts() {
+    return API.get("posts", "/posts");
   }
 
   renderPost() {
-    let {post} = this.state;
-    if(post) {
-      return(
-        <div>
-          <h1>{post.title}</h1>
-          <small className="text-muted">
-            {this.timeAgo.format(new Date(post.createdAt), english.long)}
-          </small>
-          <br />
-          <hr />
-          <p>
-            {post.content}
-          </p>
-        </div>
-      );
+    let { posts } = this.state;
+
+    if(!this.state.isLoading) {
+      let post;
+
+      if(this.props.match.params.id) {
+        post = posts.filter(singlePost => singlePost.postId === this.props.match.params.id )[0];
+      } else {
+        post = posts[0];
+        this.props.history.push(`/posts/${post.postId}`);
+      }
+
+      if(post) {
+        return(
+          <div>
+            <h1>{post.title}</h1>
+            <small className="text-muted">
+              {this.timeAgo.format(new Date(post.createdAt), english.long)}
+            </small>
+            <br />
+            <hr />
+            <p>
+              {post.content}
+            </p>
+          </div>
+        );
+      } else {
+        return(
+          <Redirect to="/404" />
+        )
+      }
     }
   }
 
@@ -65,7 +80,7 @@ export default class Posts extends Component {
             { this.renderPost() }
           </Col>
           <Col sm={4}>
-            <Sidebar posts={this.state.post == null ? [] : this.state.post} />
+            <Sidebar posts={this.state.posts} />
           </Col>
         </Row>
       </div>

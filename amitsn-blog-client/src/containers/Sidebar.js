@@ -6,8 +6,8 @@ export default class Sidebar extends Component {
   renderPostList = (posts) => {
     return [].concat(posts).map(
       (post, i) =>
-        <LinkContainer exact to={`/posts/${post.postId}`}>
-          <a href="#/" className={(i===0) ? "active":""}>
+        <LinkContainer exact to={`/posts/${post.postId}`} key={i}>
+          <a href="#/">
             { post.title }
           </a>
         </LinkContainer>

@@ -46,7 +46,7 @@ class App extends Component {
     if(this.state.isAuthenticated) {
       return(
         <React.Fragment>
-          <LinkContainer exact to="/posts/new">
+          <LinkContainer exact to="/new-post">
             <a href="#/" className="nav-link">New Post</a>
           </LinkContainer>
           <a href="#/" className="nav-link" onClick={this.handleLogout}>Logout</a>
@@ -72,7 +72,7 @@ class App extends Component {
             <Navbar.Toggle />
             <Navbar.Collapse className="justify-content-end">
               <Nav>
-                <LinkContainer exact to="/">
+                <LinkContainer to="/posts">
                   <a href="#/" className="nav-link">Home</a>
                 </LinkContainer>
                 <LinkContainer exact to="/about">
