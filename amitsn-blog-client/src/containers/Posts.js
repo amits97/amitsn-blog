@@ -59,9 +59,7 @@ export default class Posts extends Component {
             </small>
             <br />
             <hr />
-            <p>
-              <ReactMarkdown source={post.content} />
-            </p>
+            <ReactMarkdown source={post.content} />
           </div>
         );
       } else {
