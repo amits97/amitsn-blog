@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
 import TimeAgo from "javascript-time-ago"
 import en from "javascript-time-ago/locale/en"
 import english from "javascript-time-ago/locale/en"
@@ -55,18 +56,18 @@ export default class Posts extends Component {
           <div>
             <h1>{post.title}</h1>
             <small className="text-muted">
-              {this.timeAgo.format(new Date(post.createdAt), english.long)}
+              Posted {this.timeAgo.format(new Date(post.createdAt), english.long)}
             </small>
             <br />
             <hr />
             <p>
-              {post.content}
+              <ReactMarkdown source={post.content} />
             </p>
           </div>
         );
       } else {
         return(
-          <Redirect to="/404" />
+          <h3>Post not found!</h3>
         )
       }
     }

@@ -18,9 +18,39 @@ a:hover {
   text-decoration: none;
 }
 
+p {
+  color: #000;
+  line-height: 1.5;
+  font-size: 18px;
+  margin-bottom: 1.5rem;
+}
+
+p a {
+  text-decoration: underline;
+  background: #eee;
+}
+
+p a:hover {
+  text-decoration: underline;
+  background: #ddd;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Rubik', sans-serif;
   font-weight: 500;
+  line-height: 1.5;
+  margin-top: 1.5rem;
+}
+
+pre {
+  background: #343a40;
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  white-space: initial;
+  max-width: 100%;
+  margin-bottom: 1.5rem;
+  line-height: 1.75;
 }
 
 select.form-control,

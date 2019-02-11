@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Form, Card } from "react-bootstrap";
+import { Form, Card, Container, Row, Col } from "react-bootstrap";
+import ReactMarkdown from "react-markdown";
 import LoaderButton from "../components/LoaderButton";
 import { API } from "aws-amplify";
 import "./NewPost.css";
@@ -54,34 +55,35 @@ export default class NewPost extends Component {
   render() {
     return (
       <div className="NewPost">
-        <Card>
-          <Card.Body>
-            <Card.Title>
-              <h3>New Post</h3>
-            </Card.Title>
-            <Card.Text>
-              <Form onSubmit={this.handleSubmit}>
-                <Form.Group controlId="title">
-                  <Form.Label>Title</Form.Label>
-                  <Form.Control type="text" placeholder="Post title" onChange={this.handleChange} value={this.state.title} />
-                </Form.Group>
+        <h3>New Post</h3>
+        <hr />
+        <Row>
+          <Col>
+            <Form onSubmit={this.handleSubmit}>
+              <Form.Group controlId="title">
+                <Form.Control type="text" placeholder="Post title" onChange={this.handleChange} value={this.state.title} />
+              </Form.Group>
 
-                <Form.Group controlId="content">
-                  <Form.Label>Content</Form.Label>
-                  <Form.Control as="textarea" placeholder="Post content" onChange={this.handleChange} value={this.state.content} />
-                </Form.Group>
-                <LoaderButton
-                  variant="primary"
-                  disabled={!this.validateForm()}
-                  type="submit"
-                  isLoading={this.state.isLoading}
-                  text="Create"
-                  loadingText="Creating…"
-                />
-              </Form>
-            </Card.Text>
-          </Card.Body>
-        </Card>
+              <Form.Group controlId="content">
+                <Form.Control as="textarea" placeholder="Post content" onChange={this.handleChange} value={this.state.content} />
+              </Form.Group>
+              <LoaderButton
+                variant="primary"
+                disabled={!this.validateForm()}
+                type="submit"
+                isLoading={this.state.isLoading}
+                text="Create"
+                loadingText="Creating…"
+              />
+            </Form>        
+          </Col>
+          <Col>
+            <div className="preview-pane">
+              <h3>{this.state.title}</h3>
+              <ReactMarkdown source={this.state.content} />
+            </div>
+          </Col>
+        </Row>
       </div>
     );
   }

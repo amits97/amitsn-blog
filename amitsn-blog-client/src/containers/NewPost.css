@@ -1,5 +1,4 @@
 .NewPost {
-  max-width: 800px;
   margin: 20px auto;
 }
 
@@ -9,4 +8,8 @@
 
 .NewPost form textarea {
   height: 250px;
+}
+
+.NewPost .preview-pane {
+  margin-top: 15px;
 }
