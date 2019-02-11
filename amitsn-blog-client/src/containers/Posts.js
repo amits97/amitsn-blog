@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { Card } from "react-bootstrap";
+import { Card, Row, Col } from "react-bootstrap";
 import TimeAgo from "javascript-time-ago"
 import en from "javascript-time-ago/locale/en"
 import english from "javascript-time-ago/locale/en"
 import { API } from "aws-amplify";
+import Sidebar from "./Sidebar";
 import "./Posts.css";
 
 export default class Posts extends Component {
@@ -38,21 +39,20 @@ export default class Posts extends Component {
   }
 
   renderPost() {
-    if(this.state.post) {
+    let {post} = this.state;
+    if(post) {
       return(
-        <Card>
-          <Card.Body>
-            <Card.Title>
-              <h3>{this.state.post.title}</h3>
-            </Card.Title>
-            <Card.Text>
-              {this.state.post.content}
-            </Card.Text>
-            <small className="text-muted">
-              {this.timeAgo.format(new Date(this.state.post.createdAt), english.long)}
-            </small>
-          </Card.Body>
-        </Card>
+        <div>
+          <h1>{post.title}</h1>
+          <small className="text-muted">
+            {this.timeAgo.format(new Date(post.createdAt), english.long)}
+          </small>
+          <br />
+          <hr />
+          <p>
+            {post.content}
+          </p>
+        </div>
       );
     }
   }
@@ -60,7 +60,14 @@ export default class Posts extends Component {
   render() {
     return (
       <div className="Posts">
-        { this.renderPost() }
+        <Row>
+          <Col sm={8}>
+            { this.renderPost() }
+          </Col>
+          <Col sm={4}>
+            <Sidebar posts={this.state.post == null ? [] : this.state.post} />
+          </Col>
+        </Row>
       </div>
     );
   }

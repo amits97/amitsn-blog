@@ -64,11 +64,10 @@ class App extends Component {
     return (
       !this.state.isAuthenticating &&
       <div className="App">
-        <Navbar bg="dark" variant="dark" expand="lg">
+        <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
           <div className="container">
             <Navbar.Brand>
               <Link to="/">AmitSN</Link>
-              <small>Random console logs</small>
             </Navbar.Brand>
             <Navbar.Toggle />
             <Navbar.Collapse className="justify-content-end">

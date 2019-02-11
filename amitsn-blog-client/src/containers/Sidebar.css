@@ -1,0 +1,26 @@
+.Sidebar {
+  position: fixed;
+  z-index: 2;
+  height: calc(100vh - 56px);
+  top: 56px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-right: -999px;
+  padding-right: 999px;
+}
+
+.Sidebar .sidebar-content {
+  margin-top: 40px;
+}
+
+.Sidebar .sidebar-content a {
+  display: block;
+  margin: 1rem 0;
+}
+
+.Sidebar .sidebar-content a.active {
+  border-left: 5px solid #007bff;
+  font-weight: bold;
+  margin-left: -20px;
+  padding-left: 15px;
+}

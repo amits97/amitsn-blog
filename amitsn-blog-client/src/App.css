@@ -5,9 +5,3 @@
 .App .navbar-brand a {
   color: inherit;
 }
-
-.App .navbar-brand small {
-  display: block;
-  font-size: 12px;
-  color: #999;
-}
