@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Container, Card, Col, Row } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import TimeAgo from "javascript-time-ago"
 import en from "javascript-time-ago/locale/en"
 import english from "javascript-time-ago/locale/en"
