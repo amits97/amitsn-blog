@@ -18,11 +18,15 @@ a:hover {
   text-decoration: none;
 }
 
-p {
+p, ul li {
   color: #000;
   line-height: 1.5;
   font-size: 18px;
   margin-bottom: 1.5rem;
+}
+
+ul li {
+  margin-bottom: 0.5rem;
 }
 
 p a {
