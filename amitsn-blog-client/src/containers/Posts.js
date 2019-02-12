@@ -41,7 +41,7 @@ export default class Posts extends Component {
     let { posts } = this.state;
 
     if(!this.state.isLoading) {
-      if(posts.length == 0) {
+      if(posts.length === 0) {
         return(
           <h3>No posts!</h3>
         )        
