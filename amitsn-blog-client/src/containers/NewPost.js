@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Row, Col } from "react-bootstrap";
 import ReactMarkdown from "react-markdown";
+import htmlParser from "react-markdown/plugins/html-parser";
 import LoaderButton from "../components/LoaderButton";
 import { API } from "aws-amplify";
 import "./NewPost.css";
@@ -9,7 +10,7 @@ export default class NewPost extends Component {
   constructor(props) {
     super(props);
 
-    this.file = null;
+    this.parseHtml = htmlParser();
 
     this.state = {
       isLoading: null,
