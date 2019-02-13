@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar, Nav, Container, Row, Col } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { Auth } from "aws-amplify";
 import Routes from "./Routes";
@@ -83,9 +83,27 @@ class App extends Component {
             </Navbar.Collapse>
           </div>
         </Navbar>
-        <div className="container">
+        <div className="container contents">
           <Routes childProps={childProps} />
         </div>
+        <footer className="bg-dark">
+          <Container>
+            <Row>
+              <Col>
+                <h1>a.</h1>
+              </Col>
+              <Col>
+                <h6>LINKS</h6>
+                <ul>
+                  <li>Github</li>
+                  <li>Twitter</li>
+                  <li>Facebook</li>
+                </ul>
+              </Col>
+              <Col sm={4}></Col>
+            </Row>
+          </Container>
+        </footer>
       </div>
     );
   }

@@ -5,3 +5,13 @@
 .App .navbar-brand a {
   color: inherit;
 }
+
+.App .contents {
+  min-height: calc(100vh - 356px);
+}
+
+.App footer {
+  height: 300px;
+  padding: 100px 0;
+  color: #ffffff;
+}
