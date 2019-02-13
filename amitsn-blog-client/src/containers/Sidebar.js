@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { LinkContainer } from "react-router-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisV, faTimes } from "@fortawesome/free-solid-svg-icons";
+import Skeleton from "react-loading-skeleton";
 import "./Sidebar.css";
 
 export default class Sidebar extends Component {
@@ -42,6 +43,15 @@ export default class Sidebar extends Component {
         <nav>
           <h5>LATEST POSTS</h5>
           {this.renderPostList(this.props.posts)}
+        </nav>
+      );
+    } else {
+      console.log("skeleton");
+      return (
+        <nav>
+          <h5><Skeleton /></h5>
+          <br />
+          <Skeleton count={10} />
         </nav>
       );
     }

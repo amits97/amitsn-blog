@@ -5,6 +5,7 @@ import TimeAgo from "javascript-time-ago"
 import en from "javascript-time-ago/locale/en"
 import english from "javascript-time-ago/locale/en"
 import { API } from "aws-amplify";
+import Skeleton from "react-loading-skeleton";
 import Sidebar from "./Sidebar";
 import "./Posts.css";
 
@@ -39,6 +40,7 @@ export default class Posts extends Component {
 
   renderPost() {
     let { posts } = this.state;
+    let post = {};
 
     if(!this.state.isLoading) {
       if(posts.length === 0) {
@@ -47,33 +49,25 @@ export default class Posts extends Component {
         )        
       }
 
-      let post;
-
       if(this.props.match.params.id) {
         post = posts.filter(singlePost => singlePost.postId === this.props.match.params.id )[0];
       } else {
         post = posts[0];
         this.props.history.push(`/posts/${post.postId}`);
       }
-
-      if(post) {
-        return(
-          <div>
-            <h1>{post.title}</h1>
-            <small className="text-muted">
-              Posted {this.timeAgo.format(new Date(post.createdAt), english.long)}
-            </small>
-            <br />
-            <hr />
-            <ReactMarkdown source={post.content} />
-          </div>
-        );
-      } else {
-        return(
-          <h3>Post not found!</h3>
-        )
-      }
     }
+
+    return(
+      <div>
+        <h1>{post.title || <Skeleton />}</h1>
+        <small className="text-muted">
+          { post.createdAt ? `Posted ${this.timeAgo.format(new Date(post.createdAt), english.long)}` : <Skeleton /> }
+        </small>
+        <br />
+        <hr />
+        { post.content ? <ReactMarkdown source={post.content} /> : <Skeleton count={15} /> }
+      </div>
+    );
   }
 
   componentDidUpdate() {
