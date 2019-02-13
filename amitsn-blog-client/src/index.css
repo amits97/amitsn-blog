@@ -39,6 +39,11 @@ p a:hover {
   background: #ddd;
 }
 
+pre code {
+  white-space: pre-wrap;
+  padding: 0;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Rubik', sans-serif;
   font-weight: 500;
@@ -47,10 +52,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 pre {
-  background: #343a40;
-  color: #ffffff;
+  background: #f8f9fa;
   padding: 20px;
-  border-radius: 10px;
   white-space: initial;
   max-width: 100%;
   margin-bottom: 1.5rem;
@@ -68,8 +71,10 @@ input[type=file] {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  background: #f8f9fa;
+  padding: 3px 10px;
+  color: #212529;
+  font-size: 87.5%;
 }
 
 img {
