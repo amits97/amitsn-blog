@@ -25,6 +25,10 @@ p, ul li {
   margin-bottom: 1.5rem;
 }
 
+ul {
+  margin-bottom: 2rem;
+}
+
 ul li {
   margin-bottom: 0.5rem;
 }

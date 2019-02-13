@@ -14,6 +14,8 @@ class App extends Component {
       isAuthenticated: false,
       isAuthenticating: true
     };
+
+    this.packageDetails = require('../package.json')
   }
 
   async componentDidMount() {
@@ -89,16 +91,38 @@ class App extends Component {
         <footer className="bg-dark">
           <Container>
             <Row>
-              <Col>
-                <h1>a.</h1>
-              </Col>
-              <Col>
-                <h6>LINKS</h6>
-                <ul>
-                  <li>Github</li>
-                  <li>Twitter</li>
-                  <li>Facebook</li>
-                </ul>
+              <Col sm={8}>
+                <Row>
+                  <Col>
+                    <h1><Link to="/">a.</Link></h1>
+                    <small>Random console logs</small><br />
+                    <small>rev {this.packageDetails.version}</small>
+                  </Col>
+                  <Col>
+                    <h6>FIND ME ON</h6>
+                    <ul className="list-unstyled">
+                      <li><a href="https://github.com/amits97">Github</a></li>
+                      <li><a href="https://twitter.com/amits97">Twitter</a></li>
+                      <li><a href="https://www.linkedin.com/in/amitsn/">LinkedIn</a></li>
+                      <li><a href="https://facebook.com/amits97">Facebook</a></li>
+                    </ul>
+                  </Col>
+                  <Col>
+                    <h6>EXPLORE</h6>
+                    <ul className="list-unstyled">
+                      <li><a href="https://www.naadanchords.com">Naadan Chords</a></li>
+                    </ul>
+                    <h6>MUSIC</h6>
+                    <ul className="list-unstyled">
+                      <li><a href="https://www.soundcloud.com/asn">SoundCloud</a></li>
+                    </ul>
+                    <h6>WRITING</h6>
+                    <ul className="list-unstyled">
+                      <li><a href="https://tutsplus.com/authors/amit-s-namboothiry">Envato Tuts+</a></li>
+                      <li><a href="https://medium.com/@amits97">Medium</a></li>
+                    </ul>
+                  </Col>
+                </Row>
               </Col>
               <Col sm={4}></Col>
             </Row>

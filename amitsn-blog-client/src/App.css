@@ -6,12 +6,47 @@
   color: inherit;
 }
 
+.App .navbar a:hover, .App .navbar .navbar-nav a:hover {
+  color: #17a2b8;
+}
+
+.App .navbar .navbar-nav a {
+  color: #ffffff;
+}
+
+.App .navbar .navbar-nav a.active {
+  font-weight: bold;
+  border-bottom: 5px solid #17a2b8;
+  margin-bottom: -8px;
+}
+
 .App .contents {
   min-height: calc(100vh - 356px);
 }
 
 .App footer {
-  height: 300px;
-  padding: 100px 0;
+  margin-top: 50px;
+  padding: 20px 0;
   color: #ffffff;
+}
+
+.App footer h1 {
+  margin-top: 5px;
+  margin-bottom: -5px;
+}
+
+.App footer small {
+  color: #aaaaaa;
+}
+
+.App footer h6 {
+  color: #aaaaaa;
+}
+
+.App footer a {
+  color: #eeeeee;
+}
+
+.App footer a:hover {
+  color: #17a2b8;
 }
