@@ -16,8 +16,6 @@
 
 .App .navbar .navbar-nav a.active {
   font-weight: bold;
-  border-bottom: 5px solid #17a2b8;
-  margin-bottom: -8px;
 }
 
 .App .contents {
@@ -49,4 +47,12 @@
 
 .App footer a:hover {
   color: #17a2b8;
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+  .App .navbar .navbar-nav a.active {
+    border-bottom: 5px solid #17a2b8;
+    margin-bottom: -8px;
+  }
 }
