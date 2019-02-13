@@ -99,7 +99,7 @@ class App extends Component {
                     <small>rev {this.packageDetails.version}</small>
                   </Col>
                   <Col>
-                    <h6>FIND ME ON</h6>
+                    <h6>FIND ME</h6>
                     <ul className="list-unstyled">
                       <li><a href="https://github.com/amits97">Github</a></li>
                       <li><a href="https://twitter.com/amits97">Twitter</a></li>
