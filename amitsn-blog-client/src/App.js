@@ -51,6 +51,9 @@ class App extends Component {
           <LinkContainer exact to="/new-post">
             <a href="#/" className="nav-link">New Post</a>
           </LinkContainer>
+          <LinkContainer exact to="/new-page">
+            <a href="#/" className="nav-link">New Page</a>
+          </LinkContainer>
           <a href="#/" className="nav-link" onClick={this.handleLogout}>Logout</a>
         </React.Fragment>
       );

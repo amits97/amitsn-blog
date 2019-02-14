@@ -21,7 +21,7 @@ export async function main(event, context) {
       content: data.content,
       title: data.title,
       createdAt: Date.now(),
-      postStatus: "LIVE"
+      postType: data.type
     }
   };
 

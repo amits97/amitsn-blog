@@ -4,9 +4,9 @@ import ReactMarkdown from "react-markdown";
 import htmlParser from "react-markdown/plugins/html-parser";
 import LoaderButton from "../components/LoaderButton";
 import { API } from "aws-amplify";
-import "./NewPost.css";
+import "./NewPage.css";
 
-export default class NewPost extends Component {
+export default class NewPage extends Component {
   constructor(props) {
     super(props);
 
@@ -16,7 +16,7 @@ export default class NewPost extends Component {
       isLoading: null,
       title: "",
       content: "",
-      type: "POST"
+      type: "PAGE"
     };
   }
 
@@ -61,18 +61,18 @@ export default class NewPost extends Component {
 
   render() {
     return (
-      <div className="NewPost">
-        <h3>New Post</h3>
+      <div className="NewPage">
+        <h3>New Page</h3>
         <hr />
         <Row>
           <Col>
             <Form onSubmit={this.handleSubmit}>
               <Form.Group controlId="title">
-                <Form.Control type="text" placeholder="Post title" onChange={this.handleChange} value={this.state.title} />
+                <Form.Control type="text" placeholder="Page title" onChange={this.handleChange} value={this.state.title} />
               </Form.Group>
 
               <Form.Group controlId="content">
-                <Form.Control as="textarea" placeholder="Post content" onChange={this.handleChange} value={this.state.content} />
+                <Form.Control as="textarea" placeholder="Page content" onChange={this.handleChange} value={this.state.content} />
               </Form.Group>
               <LoaderButton
                 variant="primary"

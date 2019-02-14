@@ -1,0 +1,15 @@
+.NewPage {
+  margin: 20px auto;
+}
+
+.NewPage form {
+  padding: 15px 0;
+}
+
+.NewPage form textarea {
+  height: 250px;
+}
+
+.NewPage .preview-pane {
+  margin-top: 15px;
+}
