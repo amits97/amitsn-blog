@@ -46,7 +46,6 @@ export default class Sidebar extends Component {
         </nav>
       );
     } else {
-      console.log("skeleton");
       return (
         <nav>
           <h5><Skeleton /></h5>

@@ -11,11 +11,24 @@ class App extends Component {
     super(props);
   
     this.state = {
+      navExpanded: false,
       isAuthenticated: false,
       isAuthenticating: true
     };
 
     this.packageDetails = require('../package.json')
+  }
+
+  setNavExpanded = (expanded) => {
+    this.setState({
+      navExpanded: expanded
+    });
+  }
+
+  closeNav = () => {
+    this.setState({
+      navExpanded: false
+    });
   }
 
   async componentDidMount() {
@@ -69,7 +82,7 @@ class App extends Component {
     return (
       !this.state.isAuthenticating &&
       <div className="App">
-        <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
+        <Navbar bg="dark" variant="dark" expand="lg" sticky="top" onToggle={this.setNavExpanded} expanded={this.state.navExpanded}>
           <div className="container">
             <Navbar.Brand>
               <Link to="/">AmitSN</Link>
@@ -78,10 +91,10 @@ class App extends Component {
             <Navbar.Collapse className="justify-content-end">
               <Nav>
                 <LinkContainer to="/posts">
-                  <a href="#/" className="nav-link">Blog</a>
+                  <a href="#/" className="nav-link" onClick={this.closeNav}>Blog</a>
                 </LinkContainer>
                 <LinkContainer exact to="/about">
-                  <a href="#/" className="nav-link">About</a>
+                  <a href="#/" className="nav-link" onClick={this.closeNav}>About</a>
                 </LinkContainer>
                 { this.authenticatedOptions() }
               </Nav>
