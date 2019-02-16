@@ -78,7 +78,7 @@ class App extends Component {
             <Navbar.Collapse className="justify-content-end">
               <Nav>
                 <LinkContainer to="/posts">
-                  <a href="#/" className="nav-link">Home</a>
+                  <a href="#/" className="nav-link">Blog</a>
                 </LinkContainer>
                 <LinkContainer exact to="/about">
                   <a href="#/" className="nav-link">About</a>

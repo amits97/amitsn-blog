@@ -2,8 +2,19 @@
   font-weight: bold;
 }
 
-.App .navbar-brand a {
-  color: inherit;
+.App .navbar .navbar-brand a {
+  color: #ffffff;
+}
+
+.App .navbar .navbar-brand a:hover {
+  color: #ffffff;
+}
+
+.App .navbar-brand small {
+  font-size: 12px;
+  color: #aaaaaa;
+  display: block;
+  margin-top: -2.5px;
 }
 
 .App .navbar a:hover, .App .navbar .navbar-nav a:hover {
@@ -46,7 +57,7 @@
 }
 
 .App footer a:hover {
-  color: #17a2b8;
+  color: #ffffff;
 }
 
 /* Large devices (desktops, 992px and up) */
