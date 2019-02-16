@@ -18,6 +18,8 @@ export default class Page extends Component {
   }
 
   async componentDidMount() {
+    window.scrollTo(0, 0);
+
     try {
       const page = await this.page();
       this.setState({

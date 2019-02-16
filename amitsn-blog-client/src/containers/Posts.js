@@ -23,6 +23,8 @@ export default class Posts extends Component {
   }
 
   async componentDidMount() {
+    window.scrollTo(0, 0);
+
     try {
       const posts = await this.posts();
       this.setState({
