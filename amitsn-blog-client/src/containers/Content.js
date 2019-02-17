@@ -20,8 +20,10 @@ export default class Content extends Component {
     window.scrollTo(0, 0);
   }
 
-  componentDidUpdate() {
-    window.scrollTo(0, 0);
+  componentDidUpdate(prevProps) {
+    if(prevProps.activePost.postId !== this.props.activePost.postId) {
+      window.scrollTo(0, 0);
+    }
   }
 
   postMeta(activePost = {}) {
@@ -29,11 +31,8 @@ export default class Content extends Component {
       return(
         <div className="welcome">
           <h2>
-            { activePost.content ? "AmitSN" : <Skeleton /> }
-          </h2>
-          <small>
             { activePost.content ? "Random console logs" : <Skeleton /> }
-          </small>
+          </h2>
           <hr />
         </div>
       );
