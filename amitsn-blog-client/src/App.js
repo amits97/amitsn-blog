@@ -88,7 +88,7 @@ class App extends Component {
           <title>Amit S Namboothiry | Web Development Engineer</title>
           <meta name="description" content="Personal website and blog of Amit S Namboothiry,  a Web Development Engineer with good experience and passion for making clean and elegant websites." />
           <meta property="og:description" content="Personal website and blog of Amit S Namboothiry,  a Web Development Engineer with good experience and passion for making clean and elegant websites." />
-          <meta property="og:image" content="/android-chrome-256x256.png" />
+          <meta property="og:image" content={`${window.location.origin.toString()}/android-chrome-256x256.png`} />
         </Helmet>
 
         <Navbar bg="dark" variant="dark" expand="lg" sticky="top" onToggle={this.setNavExpanded} expanded={this.state.navExpanded}>

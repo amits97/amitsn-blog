@@ -89,7 +89,7 @@ export default class Content extends Component {
         description = description.substr(0, Math.min(description.length, description.lastIndexOf(" "))) + "..";
 
         let imageURL = activePost.content.match(/!\[.*?\]\((.*?)\)/);
-        imageURL = imageURL ? imageURL[1] : "/android-chrome-256x256.png";
+        imageURL = imageURL ? imageURL[1] : `${window.location.origin.toString()}/android-chrome-256x256.png`;
 
         return(
           <Helmet>
