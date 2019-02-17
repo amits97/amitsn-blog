@@ -5,6 +5,7 @@ import TimeAgo from "javascript-time-ago"
 import en from "javascript-time-ago/locale/en"
 import english from "javascript-time-ago/locale/en"
 import Skeleton from "react-loading-skeleton";
+import { Helmet } from "react-helmet";
 import Sidebar from "./Sidebar";
 import "./Content.css";
 
@@ -14,6 +15,8 @@ export default class Content extends Component {
 
     TimeAgo.addLocale(en);
     this.timeAgo = new TimeAgo('en-US');
+
+    this.removeMd = require("remove-markdown");
   }
 
   async componentDidMount() {
@@ -77,9 +80,33 @@ export default class Content extends Component {
     );
   }
 
+  renderSEOTags() {
+    let { activePost = {} } = this.props;
+
+    if(activePost.postId) {
+      if(activePost.title !== "Home") {
+        let description = activePost.content.substring(0, 157).trim();
+        description = description.substr(0, Math.min(description.length, description.lastIndexOf(" ")));
+
+        let imageURL = activePost.content.match(/!\[.*?\]\((.*?)\)/);
+        imageURL = imageURL ? imageURL[1] : "";
+
+        return(
+          <Helmet>
+            <title>Amit S Namboothiry | {activePost.title}</title>
+            <meta name="description" content={this.removeMd(description)} />
+            <meta property="og:image" content={imageURL} />
+          </Helmet>
+        );
+      }
+    }
+  }
+
   render() {
     return (
       <div className="Content">
+        { this.renderSEOTags() }
+
         <Row>
           <Col sm={8}>
             { this.renderPost() }

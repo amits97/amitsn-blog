@@ -3,6 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import { Navbar, Nav, Container, Row, Col } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { Auth } from "aws-amplify";
+import { Helmet } from "react-helmet";
 import Routes from "./Routes";
 import "./App.css";
 
@@ -82,6 +83,12 @@ class App extends Component {
     return (
       !this.state.isAuthenticating &&
       <div className="App">
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Amit S Namboothiry | Web Development Engineer</title>
+          <meta name="description" content="Personal website and blog of Amit S Namboothiry,  a Web Development Engineer with good experience and passion for making clean and elegant websites." />
+        </Helmet>
+
         <Navbar bg="dark" variant="dark" expand="lg" sticky="top" onToggle={this.setNavExpanded} expanded={this.state.navExpanded}>
           <div className="container">
             <Navbar.Brand>
@@ -93,7 +100,7 @@ class App extends Component {
                 <LinkContainer exact to="/">
                   <a href="#/" className="nav-link" onClick={this.closeNav}>Home</a>
                 </LinkContainer>
-                <LinkContainer to="/posts">
+                <LinkContainer to="/blog">
                   <a href="#/" className="nav-link" onClick={this.closeNav}>Blog</a>
                 </LinkContainer>
                 { this.authenticatedOptions() }

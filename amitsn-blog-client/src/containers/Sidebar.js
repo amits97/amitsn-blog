@@ -29,7 +29,7 @@ export default class Sidebar extends Component {
   renderPostList = (posts) => {
     return [].concat(posts).map(
       (post, i) =>
-        <LinkContainer exact to={`/posts/${post.postId}`} key={i}>
+        <LinkContainer exact to={`/blog/${post.postId}`} key={i}>
           <a href="#/">
             { post.title }
           </a>

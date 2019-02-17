@@ -22,7 +22,7 @@ export default class Posts extends Component {
         post = posts.filter(singlePost => singlePost.postId === this.props.match.params.id )[0];
       } else {
         post = posts[0];
-        this.props.history.push(`/posts/${post.postId}`);
+        this.props.history.push(`/blog/${post.postId}`);
       }
 
       this.setState({
