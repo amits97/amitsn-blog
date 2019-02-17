@@ -21,8 +21,10 @@ export default class Content extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if(prevProps.activePost.postId !== this.props.activePost.postId) {
-      window.scrollTo(0, 0);
+    if(prevProps.activePost && this.props.activePost) {
+      if(prevProps.activePost.postId !== this.props.activePost.postId) {
+        window.scrollTo(0, 0);
+      }
     }
   }
 
