@@ -86,10 +86,10 @@ export default class Content extends Component {
     if(activePost.postId) {
       if(activePost.title !== "Home") {
         let description = activePost.content.substring(0, 157).trim();
-        description = description.substr(0, Math.min(description.length, description.lastIndexOf(" ")));
+        description = description.substr(0, Math.min(description.length, description.lastIndexOf(" "))) + "..";
 
         let imageURL = activePost.content.match(/!\[.*?\]\((.*?)\)/);
-        imageURL = imageURL ? imageURL[1] : "";
+        imageURL = imageURL ? imageURL[1] : "/android-chrome-256x256.png";
 
         return(
           <Helmet>
