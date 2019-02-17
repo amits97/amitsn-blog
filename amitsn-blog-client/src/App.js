@@ -90,11 +90,11 @@ class App extends Component {
             <Navbar.Toggle />
             <Navbar.Collapse className="justify-content-end">
               <Nav>
+                <LinkContainer exact to="/">
+                  <a href="#/" className="nav-link" onClick={this.closeNav}>Home</a>
+                </LinkContainer>
                 <LinkContainer to="/posts">
                   <a href="#/" className="nav-link" onClick={this.closeNav}>Blog</a>
-                </LinkContainer>
-                <LinkContainer exact to="/about">
-                  <a href="#/" className="nav-link" onClick={this.closeNav}>About</a>
                 </LinkContainer>
                 { this.authenticatedOptions() }
               </Nav>

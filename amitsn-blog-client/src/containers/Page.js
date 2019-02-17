@@ -1,10 +1,6 @@
 import React, { Component } from "react";
-import { Row, Col } from "react-bootstrap";
-import ReactMarkdown from "react-markdown";
 import { API } from "aws-amplify";
-import Skeleton from "react-loading-skeleton";
-import Sidebar from "./Sidebar";
-import "./Page.css";
+import Content from "./Content";
 
 export default class Page extends Component {
   constructor(props) {
@@ -18,8 +14,6 @@ export default class Page extends Component {
   }
 
   async componentDidMount() {
-    window.scrollTo(0, 0);
-
     try {
       const page = await this.page();
       this.setState({
@@ -27,8 +21,13 @@ export default class Page extends Component {
       });
     } catch (e) {
       console.log(e);
+      this.loadPosts();
     }
 
+    this.loadPosts();
+  }
+
+  async loadPosts() {
     try {
       const posts = await this.posts();
       this.setState({
@@ -45,49 +44,23 @@ export default class Page extends Component {
   }
 
   page() {
-    return API.get("posts", `/posts/${this.props.match.params.id}`);
+    if(this.props.id) {
+      return API.get("posts", `/posts/home`);
+    } else {
+      return API.get("posts", `/posts/${this.props.match.params.id}`);
+    }
   }
 
   posts() {
     return API.get("posts", "/posts");
   }
 
-  renderPage() {
-    let { page } = this.state;
-
-    if(!this.state.isLoading) {
-      if(!page.hasOwnProperty("postId")) {
-        return(
-          <h3>Page not found!</h3>
-        )        
-      }
-    }
-
-    return(
-      <div>
-        <h1>{page.title || <Skeleton />}</h1>
-        <hr />
-        { page.content ? <ReactMarkdown source={page.content} /> : <Skeleton count={15} /> }
-      </div>
-    );
-  }
-
-  componentDidUpdate() {
-    window.scrollTo(0, 0);
-  }
-
   render() {
+    let { posts, isLoading, page } = this.state;
+    let { isHomePage } = this.props;
+
     return (
-      <div className="Page">
-        <Row>
-          <Col sm={8}>
-            { this.renderPage() }
-          </Col>
-          <Col sm={4}>
-            <Sidebar posts={this.state.posts} />
-          </Col>
-        </Row>
-      </div>
+      <Content posts={posts} isLoading={isLoading} activePost={page} isHomePage={isHomePage} />
     );
   }
 }
