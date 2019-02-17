@@ -35,9 +35,9 @@ export default class Content extends Component {
     if(this.props.isHomePage) {
       return(
         <div className="welcome">
-          <h2>
+          <h1>
             { activePost.content ? "Random console logs" : <Skeleton /> }
-          </h2>
+          </h1>
           <hr />
         </div>
       );
