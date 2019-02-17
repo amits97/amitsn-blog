@@ -87,6 +87,7 @@ class App extends Component {
           <meta charSet="utf-8" />
           <title>Amit S Namboothiry | Web Development Engineer</title>
           <meta name="description" content="Personal website and blog of Amit S Namboothiry,  a Web Development Engineer with good experience and passion for making clean and elegant websites." />
+          <meta property="og:description" content="Personal website and blog of Amit S Namboothiry,  a Web Development Engineer with good experience and passion for making clean and elegant websites." />
         </Helmet>
 
         <Navbar bg="dark" variant="dark" expand="lg" sticky="top" onToggle={this.setNavExpanded} expanded={this.state.navExpanded}>

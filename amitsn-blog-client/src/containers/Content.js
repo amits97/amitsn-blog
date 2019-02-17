@@ -95,6 +95,7 @@ export default class Content extends Component {
           <Helmet>
             <title>Amit S Namboothiry | {activePost.title}</title>
             <meta name="description" content={this.removeMd(description)} />
+            <meta property="og:description" content={this.removeMd(description)} />
             <meta property="og:image" content={imageURL} />
           </Helmet>
         );
