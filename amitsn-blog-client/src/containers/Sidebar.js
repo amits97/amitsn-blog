@@ -61,7 +61,7 @@ export default class Sidebar extends Component {
 
     return (
       <div className="Sidebar">
-        <div className={`sidebar bg-light ${mobileSidebarOpened ? 'opened' : ''}`}>
+        <div className={`sidebar bg-light border-left ${mobileSidebarOpened ? 'opened' : ''}`}>
           <div className="sidebar-content p-5">
             {this.renderSidebarList()}
           </div>

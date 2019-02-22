@@ -32,7 +32,7 @@ export default class Content extends Component {
   }
 
   postMeta(activePost = {}) {
-    if(this.props.isHomePage) {
+    if(activePost.postId === "home") {
       return(
         <div className="welcome">
           <h1>
