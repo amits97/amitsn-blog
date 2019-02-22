@@ -28,6 +28,10 @@ export default class Posts extends Component {
           } catch (e) {
             console.log(e);
           }
+
+          if(this.props.match.params.id === "home") {
+            this.props.history.push("/");
+          }
         } else {
           post = posts[0];
           this.props.history.push(`/blog/${post.postId}`);
