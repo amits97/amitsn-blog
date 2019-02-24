@@ -5,6 +5,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Auth } from "aws-amplify";
 import { Helmet } from "react-helmet";
 import Routes from "./Routes";
+import "highlight.js/styles/xcode.css";
 import "./App.css";
 
 class App extends Component {

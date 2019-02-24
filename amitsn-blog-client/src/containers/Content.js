@@ -7,6 +7,7 @@ import english from "javascript-time-ago/locale/en"
 import Skeleton from "react-loading-skeleton";
 import { Helmet } from "react-helmet";
 import Disqus from "disqus-react";
+import CodeBlock from "../renderers/code-renderer";
 import Sidebar from "./Sidebar";
 import "./Content.css";
 
@@ -20,7 +21,7 @@ export default class Content extends Component {
     this.removeMd = require("remove-markdown");
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     window.scrollTo(0, 0);
   }
 
@@ -84,7 +85,7 @@ export default class Content extends Component {
     return(
       <div>
         { this.postMeta(activePost) }
-        { activePost.content ? <ReactMarkdown source={activePost.content} /> : <Skeleton count={15} /> }
+        { activePost.content ? <ReactMarkdown source={activePost.content} renderers={{ code: CodeBlock }} /> : <Skeleton count={15} /> }
         { this.props.isPage ? null : <div><hr /><Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig} /></div> }
       </div>
     );

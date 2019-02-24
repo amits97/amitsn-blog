@@ -55,7 +55,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 1.5rem;
 }
 
-pre {
+pre, blockquote {
   background: #f8f9fa;
   padding: 20px;
   white-space: initial;
@@ -63,6 +63,14 @@ pre {
   margin-bottom: 1.5rem;
   line-height: 1.75;
   border: 1px solid #dee2e6;
+}
+
+blockquote p {
+  margin-bottom: 0;
+}
+
+pre .hljs {
+  background: initial;
 }
 
 select.form-control,
