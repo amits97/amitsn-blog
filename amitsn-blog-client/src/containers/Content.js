@@ -6,6 +6,7 @@ import en from "javascript-time-ago/locale/en"
 import english from "javascript-time-ago/locale/en"
 import Skeleton from "react-loading-skeleton";
 import { Helmet } from "react-helmet";
+import Disqus from "disqus-react";
 import Sidebar from "./Sidebar";
 import "./Content.css";
 
@@ -72,10 +73,19 @@ export default class Content extends Component {
       }
     }
 
+    //Disqus comments
+    let disqusShortname = "amitsn";
+    let disqusConfig = {
+      url: `https://www.amitsn.com/blog/${activePost.postId}`,
+      identifier: activePost.postId,
+      title: activePost.title
+    };
+
     return(
       <div>
         { this.postMeta(activePost) }
         { activePost.content ? <ReactMarkdown source={activePost.content} /> : <Skeleton count={15} /> }
+        { this.props.isPage ? null : <div><br /><hr /><br /><Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig} /></div> }
       </div>
     );
   }

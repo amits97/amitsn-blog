@@ -99,9 +99,10 @@ export default class Posts extends Component {
 
   render() {
     let { posts, isLoading, activePost } = this.state;
+    let { isPage } = this.props;
 
     return (
-      <Content posts={posts} isLoading={isLoading} activePost={activePost} />
+      <Content posts={posts} isLoading={isLoading} activePost={activePost} isPage={isPage} />
     );
   }
 }
