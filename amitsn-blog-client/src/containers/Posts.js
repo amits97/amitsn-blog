@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { API } from "aws-amplify";
+import ReactGA from 'react-ga';
 import Content from "./Content";
 
 export default class Posts extends Component {
@@ -46,6 +47,9 @@ export default class Posts extends Component {
     } catch (e) {
       console.log(e);
     }
+
+    ReactGA.initialize("UA-34900138-1");
+    ReactGA.pageview(window.location.pathname + window.location.search);
   }
 
   async componentDidUpdate(prevProps) {
@@ -70,6 +74,8 @@ export default class Posts extends Component {
         isLoading: false,
         activePost: post
       });
+
+      ReactGA.pageview(window.location.pathname + window.location.search);
     } else if(prevProps.isPage && !this.props.isPage) {
       console.log("hi");
       //User moving from a page to blog
@@ -79,6 +85,8 @@ export default class Posts extends Component {
       this.setState({
         activePost: post
       });
+
+      ReactGA.pageview(window.location.pathname + window.location.search);
     }
   }
 
