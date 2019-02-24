@@ -121,7 +121,7 @@ class App extends Component {
                   <Col>
                     <h1><Link to="/">a.</Link></h1>
                     <small>Random console logs</small><br />
-                    <small>rev {this.packageDetails.version}</small>
+                    <small><a href="/sitemap.xml">sitemap</a> | rev {this.packageDetails.version}</small>
                   </Col>
                   <Col>
                     <h6>FIND ME ON</h6>
