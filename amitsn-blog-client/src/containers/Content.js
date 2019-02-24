@@ -63,13 +63,23 @@ export default class Content extends Component {
     if(!isLoading) {
       if(posts.length === 0) {
         return(
-          <h3>No posts!</h3>
+          <div>
+            <Helmet>
+              <meta name="prerender-status-code" content="404" />
+            </Helmet>
+            <h3>No posts!</h3>
+          </div>
         );
       }
 
       if(!activePost.postId) {
         return(
-          <h3>Page not found!</h3>
+          <div>
+            <Helmet>
+              <meta name="prerender-status-code" content="404" />
+            </Helmet>
+            <h3>Page not found!</h3>
+          </div>
         );       
       }
     }
