@@ -38,7 +38,7 @@ export default class Content extends Component {
       return(
         <div className="welcome">
           <h1>
-            { activePost.content ? "Random console logs" : <Skeleton /> }
+            { activePost.content ? "Hi 👋" : <Skeleton /> }
           </h1>
           <hr />
         </div>
