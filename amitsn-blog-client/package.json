@@ -1,6 +1,6 @@
 {
   "name": "amitsn-blog-client",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.14",
@@ -17,13 +17,15 @@
     "react-markdown": "^4.0.6",
     "react-router-bootstrap": "^0.24.4",
     "react-router-dom": "^4.3.1",
+    "react-router-sitemap": "^1.2.0",
     "react-scripts": "^2.1.5",
     "remove-markdown": "^0.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "predeploy": "npm version patch && npm run build",
+    "sitemap": "babel-node src/sitemap/sitemap-generator.js",
+    "predeploy": "npm run sitemap && npm version patch && npm run build",
     "deploy": "aws s3 sync build/ s3://amitsn-blog-client --delete",
     "postdeploy": "aws cloudfront create-invalidation --distribution-id E3EJ272XE26PWO --paths '/*'",
     "test": "react-scripts test",
@@ -39,6 +41,10 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.7.1"
+    "@fortawesome/fontawesome-free": "^5.7.1",
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-register": "^6.26.0"
   }
 }
