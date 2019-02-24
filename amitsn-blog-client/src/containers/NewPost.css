@@ -7,7 +7,7 @@
 }
 
 .NewPost form textarea {
-  height: 250px;
+  margin-bottom: 20px;
 }
 
 .NewPost .preview-pane {

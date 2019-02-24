@@ -4,6 +4,7 @@ import ReactMarkdown from "react-markdown";
 import htmlParser from "react-markdown/plugins/html-parser";
 import LoaderButton from "../components/LoaderButton";
 import { API } from "aws-amplify";
+import TextareaAutosize from "react-autosize-textarea";
 import "./NewPost.css";
 
 export default class NewPost extends Component {
@@ -71,9 +72,7 @@ export default class NewPost extends Component {
                 <Form.Control type="text" placeholder="Post title" onChange={this.handleChange} value={this.state.title} />
               </Form.Group>
 
-              <Form.Group controlId="content">
-                <Form.Control as="textarea" placeholder="Post content" onChange={this.handleChange} value={this.state.content} />
-              </Form.Group>
+              <TextareaAutosize placeholder="Post content" onChange={this.handleChange} value={this.state.content} id="content" className="form-control" style={{ minHeight: 250 }} />
               <LoaderButton
                 variant="primary"
                 disabled={!this.validateForm()}
