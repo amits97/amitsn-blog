@@ -65,7 +65,7 @@ export default class Content extends Component {
         return(
           <div>
             <Helmet>
-              <meta name="prerender-status-code" content="404" />
+              <meta name="prerender-status-code" content="501" />
             </Helmet>
             <h3>No posts!</h3>
           </div>
@@ -76,7 +76,7 @@ export default class Content extends Component {
         return(
           <div>
             <Helmet>
-              <meta name="prerender-status-code" content="404" />
+              <meta name="prerender-status-code" content="501" />
             </Helmet>
             <h3>Page not found!</h3>
           </div>

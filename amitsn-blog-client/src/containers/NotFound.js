@@ -11,7 +11,7 @@ export default class NotFound extends Component {
     return(
       <div className="NotFound">
         <Helmet>
-          <meta name="prerender-status-code" content="404" />
+          <meta name="prerender-status-code" content="501" />
         </Helmet>
         <h3>Sorry, page not found!</h3>
       </div>
