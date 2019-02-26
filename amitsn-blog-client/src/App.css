@@ -1,13 +1,14 @@
 .App .navbar-brand {
   font-weight: bold;
+  letter-spacing: 0.1em;
 }
 
 .App .navbar .navbar-brand a {
-  color: #ffffff;
+  color: #333333;
 }
 
 .App .navbar .navbar-brand a:hover {
-  color: #ffffff;
+  color: #333333;
 }
 
 .App .navbar-brand small {
@@ -22,7 +23,7 @@
 }
 
 .App .navbar .navbar-nav a {
-  color: #ffffff;
+  color: #333333;
 }
 
 .App .navbar .navbar-nav a.active {

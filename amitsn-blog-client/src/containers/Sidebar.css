@@ -11,8 +11,11 @@
 }
 
 .Sidebar .sidebar-content {
-  margin-top: 10px;
   min-width: 200px;
+}
+
+.Sidebar .sidebar-content h5 {
+  color: #17a2b8
 }
 
 .Sidebar .sidebar-content a {

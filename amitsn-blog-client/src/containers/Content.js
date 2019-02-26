@@ -40,7 +40,6 @@ export default class Content extends Component {
           <h1>
             { activePost.content ? "Hi 👋" : <Skeleton /> }
           </h1>
-          <hr />
         </div>
       );
     }

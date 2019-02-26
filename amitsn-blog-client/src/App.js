@@ -92,10 +92,10 @@ class App extends Component {
           <meta property="og:image" content={`${window.location.origin.toString()}/android-chrome-256x256.png`} />
         </Helmet>
 
-        <Navbar bg="dark" variant="dark" expand="lg" sticky="top" onToggle={this.setNavExpanded} expanded={this.state.navExpanded}>
+        <Navbar bg="white" expand="lg" sticky="top" onToggle={this.setNavExpanded} expanded={this.state.navExpanded} className="border-bottom">
           <div className="container">
             <Navbar.Brand>
-              <Link to="/">AmitSN</Link>
+              <Link to="/">AMITSN</Link>
             </Navbar.Brand>
             <Navbar.Toggle />
             <Navbar.Collapse className="justify-content-end">
