@@ -22,10 +22,15 @@ const CodeBlock = createReactClass({
     },
 
     render: function() {
+        let language = 'js';
+        if(this.props.value && this.props.value.length > 0) {
+            language = this.props.language;
+        }
+
         return (
             <Lowlight
-                language={this.props.language || 'js'}
-                value={this.props.value}
+                language={language || 'js'}
+                value={this.props.value || ''}
                 inline={this.props.inline}
             />
         );

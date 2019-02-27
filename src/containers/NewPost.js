@@ -5,6 +5,7 @@ import htmlParser from "react-markdown/plugins/html-parser";
 import LoaderButton from "../components/LoaderButton";
 import { API } from "aws-amplify";
 import TextareaAutosize from "react-autosize-textarea";
+import CodeBlock from "../renderers/code-renderer";
 import "./NewPost.css";
 
 export default class NewPost extends Component {
@@ -86,7 +87,7 @@ export default class NewPost extends Component {
           <Col>
             <div className="preview-pane">
               <h3>{this.state.title}</h3>
-              <ReactMarkdown source={this.state.content} />
+              <ReactMarkdown source={this.state.content} renderers={{ code: CodeBlock }} />
             </div>
           </Col>
         </Row>
