@@ -7,11 +7,11 @@ At a high level, this is how the project is split:
 * **Middleware** - Lambda@Edge on CloudFront which contains logic to send crawlers to cached prerender.io pages.
 
 ### Commands
-On `api/` folder:
+## Backend (`api/` folder)
 * `serverless deploy` to deploy new API changes after installing all dependencies using `npm install`.
 * `serverless deploy function -f list` to deploy specific functions.
 
-On root `/` folder:
+## Frontend (root `/` folder)
 * `npm start` to run project locally after installing all dependencies using `npm install`.
 * `npm run sitemap` to run sitemap generator which generates updated sitemap.xml in public folder.
 * `npm run deploy` to create new sitemap.xml and deploy all changes to S3 bucket and invalidate CloudFront cache.
