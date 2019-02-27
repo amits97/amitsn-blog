@@ -1,6 +1,6 @@
 {
   "name": "amitsn-blog-client",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.14",
@@ -33,7 +33,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "sitemap": "babel-node src/sitemap/sitemap-generator.js",
-    "predeploy": "npm run sitemap && npm version patch && npm run build",
+    "predeploy": "npm run sitemap && npm version patch --no-git-tag-version && npm run build",
     "deploy": "aws s3 sync build/ s3://amitsn-blog-client --delete",
     "postdeploy": "aws cloudfront create-invalidation --distribution-id E3EJ272XE26PWO --paths '/*'",
     "test": "react-scripts test",
