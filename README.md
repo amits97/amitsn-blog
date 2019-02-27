@@ -1,5 +1,5 @@
 ## Serverless SPA for amitsn.com
-This is the source code for my personal website / blog: amitsn.com
+This is the source code for my personal website / blog: https://www.amitsn.com
 
 At a high level, this is how the project is split:
 * **Backend API** - Managed by serverless. Uses AWS Lambda over API Gateway to fetch data from DynamoDB.
