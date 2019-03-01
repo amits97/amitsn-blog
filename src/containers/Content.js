@@ -113,7 +113,7 @@ export default class Content extends Component {
 
         return(
           <Helmet>
-            <title>Amit S Namboothiry | {activePost.title}</title>
+            <title>{activePost.title} | Amit S Namboothiry</title>
             <meta name="description" content={this.removeMd(description)} />
             <meta name="twitter:card" content="summary" />
             <meta property="og:title" content={activePost.title} />

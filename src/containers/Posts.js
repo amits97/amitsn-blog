@@ -77,7 +77,6 @@ export default class Posts extends Component {
 
       ReactGA.pageview(window.location.pathname + window.location.search);
     } else if(prevProps.isPage && !this.props.isPage) {
-      console.log("hi");
       //User moving from a page to blog
       post = posts[0];
       this.props.history.push(`/blog/${post.postId}`);
