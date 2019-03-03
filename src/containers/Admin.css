@@ -10,3 +10,11 @@
 .Admin .header .btn {
   margin-top: 30px;
 }
+
+.Admin .list-group-item:first-child {
+  border-top: 0;
+}
+
+.Admin .list-group-item-light {
+  color: #333;
+}

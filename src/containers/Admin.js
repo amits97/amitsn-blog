@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { API } from "aws-amplify";
-import { Button } from "react-bootstrap";
+import { Button, ListGroup } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import Skeleton from "react-loading-skeleton";
 import "./Admin.css";
 
 export default class Admin extends Component {
@@ -30,9 +31,33 @@ export default class Admin extends Component {
     return API.get("posts", "/posts");
   }
 
-  render() {
-    let { posts } = this.state;
+  renderPosts() {
+    let { isLoading, posts } = this.state;
 
+    if(isLoading) {
+      return (
+        <Skeleton count={10}></Skeleton>
+      );
+    }
+
+    if(posts.length > 0) {
+      return (
+        <ListGroup variant="flush">
+          {
+            posts.map((post, i) => {
+              return <ListGroup.Item variant={`${i%2 == 0 ? "" : "light"}`}>{ post.title }</ListGroup.Item>
+            })
+          }
+        </ListGroup>
+      );
+    } else {
+      return (
+        <p>No posts</p>
+      );
+    }
+  }
+
+  render() {
     return (
       <div className="Admin">
         <div className="header">
@@ -42,6 +67,7 @@ export default class Admin extends Component {
           </LinkContainer>
         </div>
         <hr />
+        { this.renderPosts() }
       </div>
     );
   }
