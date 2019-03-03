@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { API } from "aws-amplify";
-import ReactGA from 'react-ga';
+import ReactGA from "react-ga";
+import { Helmet } from "react-helmet";
 import Content from "./Content";
 
 export default class Posts extends Component {
@@ -10,7 +11,9 @@ export default class Posts extends Component {
     this.state = {
       posts: [],
       activePost: {},
-      isLoading: true
+      isLoading: true,
+      redirect: false,
+      redirectUrl: ""
     };
   }
 
@@ -32,10 +35,18 @@ export default class Posts extends Component {
 
           if(this.props.match.params.id === "home") {
             this.props.history.push("/");
+            this.setState({
+              redirect: true,
+              redirectUrl: "/"
+            });
           }
         } else {
           post = posts[0];
           this.props.history.push(`/blog/${post.postId}`);
+          this.setState({
+            redirect: true,
+            redirectUrl: `/blog/${post.postId}`
+          });
         }
       }
 
@@ -104,12 +115,26 @@ export default class Posts extends Component {
     }
   }
 
+  renderRedirect() {
+    if(this.state.redirect) {
+      return(
+        <Helmet>
+          <meta name="prerender-status-code" content="301" />
+          <meta name="prerender-header" content={`Location: https://www.amitsn.com${this.state.redirectUrl}`} />
+        </Helmet>        
+      );
+    }
+  }
+
   render() {
     let { posts, isLoading, activePost } = this.state;
     let { isPage } = this.props;
 
     return (
-      <Content posts={posts} isLoading={isLoading} activePost={activePost} isPage={isPage} />
+      <div>
+        { this.renderRedirect() }
+        <Content posts={posts} isLoading={isLoading} activePost={activePost} isPage={isPage} />
+      </div>
     );
   }
 }
