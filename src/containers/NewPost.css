@@ -2,11 +2,15 @@
   margin: 20px auto;
 }
 
+.NewPost h3 a:hover {
+  text-decoration: underline;
+}
+
 .NewPost form {
   padding: 15px 0;
 }
 
-.NewPost form textarea {
+.NewPost form textarea, .NewPost form select {
   margin-bottom: 20px;
 }
 

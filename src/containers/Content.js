@@ -42,6 +42,15 @@ export default class Content extends Component {
           </h1>
         </div>
       );
+    } else if(this.props.isPage) {
+      return(
+        <div>
+          <h1>
+            {activePost.title || <Skeleton />}
+          </h1>
+          <hr />
+        </div>
+      );
     }
 
     return(

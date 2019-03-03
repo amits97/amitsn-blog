@@ -63,11 +63,8 @@ class App extends Component {
     if(this.state.isAuthenticated) {
       return(
         <React.Fragment>
-          <LinkContainer exact to="/new-post">
-            <a href="#/" className="nav-link">New Post</a>
-          </LinkContainer>
-          <LinkContainer exact to="/new-page">
-            <a href="#/" className="nav-link">New Page</a>
+          <LinkContainer to="/admin">
+            <a href="#/" className="nav-link">Admin</a>
           </LinkContainer>
           <a href="#/" className="nav-link" onClick={this.handleLogout}>Logout</a>
         </React.Fragment>

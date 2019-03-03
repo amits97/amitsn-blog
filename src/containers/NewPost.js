@@ -4,6 +4,7 @@ import ReactMarkdown from "react-markdown";
 import htmlParser from "react-markdown/plugins/html-parser";
 import LoaderButton from "../components/LoaderButton";
 import { API } from "aws-amplify";
+import { LinkContainer } from "react-router-bootstrap";
 import TextareaAutosize from "react-autosize-textarea";
 import CodeBlock from "../renderers/code-renderer";
 import "./NewPost.css";
@@ -64,7 +65,12 @@ export default class NewPost extends Component {
   render() {
     return (
       <div className="NewPost">
-        <h3>New Post</h3>
+        <h3>
+          <LinkContainer exact to="/admin">
+            <a href="#/" className="text-primary">Admin</a>
+          </LinkContainer>
+          <span> <small>&raquo;</small> New Post</span>
+        </h3>
         <hr />
         <Row>
           <Col>
@@ -74,6 +80,12 @@ export default class NewPost extends Component {
               </Form.Group>
 
               <TextareaAutosize placeholder="Post content" onChange={this.handleChange} value={this.state.content} id="content" className="form-control" style={{ minHeight: 250 }} />
+
+              <Form.Control as="select" id="type" onChange={this.handleChange}>
+                <option value="POST" default>Post</option>
+                <option value="PAGE">Page</option>
+              </Form.Control>
+
               <LoaderButton
                 variant="primary"
                 disabled={!this.validateForm()}

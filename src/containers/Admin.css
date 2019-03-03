@@ -1,0 +1,12 @@
+.Admin .header {
+  overflow: auto;
+  margin-bottom: -5px;
+}
+
+.Admin .header h3 {
+  margin-top: 30px;
+}
+
+.Admin .header .btn {
+  margin-top: 30px;
+}
