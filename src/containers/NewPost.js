@@ -48,14 +48,14 @@ export default class NewPost extends Component {
           content: this.state.content,
           type: this.state.type
         });
-        this.props.history.push("/admin");
+        this.props.history.push(`/blog/${this.props.match.params.id}`);
       } else {
         await this.createPost({
           title: this.state.title,
           content: this.state.content,
           type: this.state.type
         });
-        this.props.history.push("/admin");  
+        this.props.history.push("/blog");
       }
     } catch (e) {
       alert(e);
