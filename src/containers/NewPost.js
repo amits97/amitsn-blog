@@ -20,7 +20,8 @@ export default class NewPost extends Component {
       isLoading: null,
       title: "",
       content: "",
-      type: "POST"
+      type: "POST",
+      submitted: false
     };
   }
 
@@ -38,7 +39,7 @@ export default class NewPost extends Component {
   handleSubmit = async event => {
     event.preventDefault();
   
-    this.setState({ isLoading: true });
+    this.setState({ isLoading: true, submitted: true });
   
     try {
       if(this.props.isEditMode) {
@@ -69,7 +70,7 @@ export default class NewPost extends Component {
   }
 
   updatePost(post) {
-    return API.put("posts", "/posts", {
+    return API.put("posts", `/posts/${this.props.match.params.id}`, {
       body: post
     });
   }
@@ -107,7 +108,7 @@ export default class NewPost extends Component {
   }
 
   renderEditor(isEditMode) {
-    if(isEditMode && this.state.isLoading) {
+    if(isEditMode && this.state.isLoading && !this.state.submitted) {
       return(
         <Row>
           <Col>

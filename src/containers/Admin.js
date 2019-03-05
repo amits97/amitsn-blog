@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { API } from "aws-amplify";
-import { Button, ListGroup } from "react-bootstrap";
+import { Button, ListGroup, Tabs, Tab, Row, Col, Nav } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import Skeleton from "react-loading-skeleton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faPlus } from "@fortawesome/free-solid-svg-icons"
 import "./Admin.css";
 
 export default class Admin extends Component {
@@ -48,7 +50,7 @@ export default class Admin extends Component {
           {
             posts.map((post, i) => {
               return (
-                <ListGroup.Item key={i} variant={`${i%2 === 0 ? "" : "light"}`}>
+                <ListGroup.Item key={i}>
                   <LinkContainer exact to={`/admin/edit-post/${post.postId}`}>
                     <a href="#/" className="text-primary">{ post.title }</a>
                   </LinkContainer>
@@ -68,14 +70,37 @@ export default class Admin extends Component {
   render() {
     return (
       <div className="Admin">
-        <div className="header">
+        <div className="header border-bottom">
           <h3 className="float-left">Admin dashboard</h3>
           <LinkContainer exact to="/admin/new-post">
-            <Button variant="primary" className="float-right">New Post</Button>
+            <Button variant="primary" className="float-right"><span><FontAwesomeIcon icon={ faPlus } /></span>New Post</Button>
           </LinkContainer>
         </div>
-        <hr />
-        { this.renderPosts() }
+
+        <Tab.Container defaultActiveKey="posts">
+          <Row>
+            <Col sm={2}>
+              <Nav variant="pills" className="flex-column">
+                <Nav.Item>
+                  <Nav.Link eventKey="posts">Posts</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link eventKey="pages">Pages</Nav.Link>
+                </Nav.Item>
+              </Nav>
+            </Col>
+            <Col sm={10}>
+              <Tab.Content>
+                <Tab.Pane eventKey="posts">
+                  { this.renderPosts() }
+                </Tab.Pane>
+                <Tab.Pane eventKey="pages">
+                  <p>Nothing here now!</p>
+                </Tab.Pane>
+              </Tab.Content>
+            </Col>
+          </Row>
+        </Tab.Container>
       </div>
     );
   }

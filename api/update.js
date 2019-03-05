@@ -8,11 +8,11 @@ export async function main(event, context) {
     Key: {
       postId: event.pathParameters.id
     },
-    UpdateExpression: "SET title = :title SET content = :content SET postType = :postType",
+    UpdateExpression: "SET title = :title, content = :content, postType = :postType",
     ExpressionAttributeValues: {
       ":title": data.title || null,
       ":content": data.content || null,
-      ":postType": data.postType || null
+      ":postType": data.type || null
     },
     ReturnValues: "ALL_NEW"
   };

@@ -1,6 +1,7 @@
 .Admin .header {
   overflow: auto;
-  margin-bottom: -5px;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
 }
 
 .Admin .header h3 {
@@ -11,15 +12,34 @@
   margin-top: 30px;
 }
 
+.Admin .header .btn span {
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.Admin .nav-pills {
+  text-transform: uppercase;
+  margin-left: 5px;
+}
+
+.Admin .nav-pills .nav-link.active {
+  background-color: inherit;
+  color: inherit;
+  font-weight: bold;
+  border-left: 5px solid #17a2b8;
+  border-radius: 0;
+  margin-left: -5px;
+}
+
+.Admin .list-group-item {
+  padding: 10px 5px;
+  border: 0;
+}
+
 .Admin .list-group-item a:hover {
   text-decoration: underline;
 }
 
-.Admin .list-group-item {
-  border: none;
-}
-
 .Admin .list-group-item-light {
   color: #333;
-  background-color: #f8f9fa;
 }
