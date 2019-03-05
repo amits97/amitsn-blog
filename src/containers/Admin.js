@@ -16,6 +16,8 @@ export default class Admin extends Component {
   }
 
   async componentDidMount() {
+    window.scrollTo(0, 0);
+
     try {
       const posts = await this.posts();
 
@@ -45,7 +47,13 @@ export default class Admin extends Component {
         <ListGroup variant="flush">
           {
             posts.map((post, i) => {
-              return <ListGroup.Item variant={`${i%2 == 0 ? "" : "light"}`}>{ post.title }</ListGroup.Item>
+              return (
+                <ListGroup.Item key={i} variant={`${i%2 === 0 ? "" : "light"}`}>
+                  <LinkContainer exact to={`/admin/edit-post/${post.postId}`}>
+                    <a href="#/" className="text-primary">{ post.title }</a>
+                  </LinkContainer>
+                </ListGroup.Item>
+              );
             })
           }
         </ListGroup>
