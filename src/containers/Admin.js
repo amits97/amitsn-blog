@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { API } from "aws-amplify";
-import { Button, ListGroup, Tabs, Tab, Row, Col, Nav } from "react-bootstrap";
+import { Button, ListGroup, Tab, Row, Col, Nav } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import Skeleton from "react-loading-skeleton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -13,6 +13,7 @@ export default class Admin extends Component {
 
     this.state = {
       posts: [],
+      pages: [],
       isLoading: true
     };
   }
@@ -22,21 +23,28 @@ export default class Admin extends Component {
 
     try {
       const posts = await this.posts();
+      const pages = await this.pages();
 
       this.setState({
         posts: posts,
+        pages: pages,
         isLoading: false
       });
     } catch (e) {
       console.log(e);
     }
   }
+
   posts() {
     return API.get("posts", "/posts");
   }
 
-  renderPosts() {
-    let { isLoading, posts } = this.state;
+  pages() {
+    return API.get("posts", "/posts?postType=PAGE");
+  }
+
+  renderPosts(posts) {
+    let { isLoading } = this.state;
 
     if(isLoading) {
       return (
@@ -68,6 +76,8 @@ export default class Admin extends Component {
   }
 
   render() {
+    let { posts, pages } = this.state;
+
     return (
       <div className="Admin">
         <div className="header border-bottom">
@@ -92,10 +102,10 @@ export default class Admin extends Component {
             <Col sm={10}>
               <Tab.Content>
                 <Tab.Pane eventKey="posts">
-                  { this.renderPosts() }
+                  { this.renderPosts(posts) }
                 </Tab.Pane>
                 <Tab.Pane eventKey="pages">
-                  <p>Nothing here now!</p>
+                { this.renderPosts(pages) }
                 </Tab.Pane>
               </Tab.Content>
             </Col>

@@ -48,7 +48,11 @@ export default class NewPost extends Component {
           content: this.state.content,
           type: this.state.type
         });
-        this.props.history.push(`/blog/${this.props.match.params.id}`);
+        if(this.state.type === "PAGE") {
+          this.props.history.push(`/${this.props.match.params.id}`);
+        } else {
+          this.props.history.push(`/blog/${this.props.match.params.id}`);
+        }
       } else {
         await this.createPost({
           title: this.state.title,
@@ -128,8 +132,8 @@ export default class NewPost extends Component {
     
             <TextareaAutosize placeholder="Post content" onChange={this.handleChange} value={this.state.content} id="content" className="form-control" style={{ minHeight: 250 }} />
     
-            <Form.Control as="select" id="type" onChange={this.handleChange}>
-              <option value="POST" default>Post</option>
+            <Form.Control as="select" id="type" onChange={this.handleChange} value={this.state.type}>
+              <option value="POST">Post</option>
               <option value="PAGE">Page</option>
             </Form.Control>
     

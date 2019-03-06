@@ -1,5 +1,4 @@
 import * as dynamoDbLib from "./libs/dynamodb-lib";
-import { success, failure } from "./libs/response-lib";
 
 export async function main(event, context) {
   const params = {
@@ -7,7 +6,7 @@ export async function main(event, context) {
     IndexName: "postType-createdAt-index",
     KeyConditionExpression: "postType = :postType",
     ExpressionAttributeValues: {
-      ":postType": "POST",
+      ":postType": event.postType || "POST",
     },
     ScanIndexForward: false
   };
@@ -15,8 +14,8 @@ export async function main(event, context) {
   try {
     const result = await dynamoDbLib.call("query", params);
     // Return the matching list of items in response body
-    return success(result.Items);
+    return result.Items;
   } catch (e) {
-    return failure({ status: false, error: e });
+    return { status: false, error: e };
   }
 }
