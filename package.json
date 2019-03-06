@@ -1,6 +1,6 @@
 {
   "name": "amitsn-blog-client",
-  "version": "0.7.6",
+  "version": "0.7.7",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.14",
@@ -10,7 +10,7 @@
     "create-react-class": "^15.6.3",
     "disqus-react": "^1.0.5",
     "highlight.js": "^9.14.2",
-    "javascript-time-ago": "^2.0.1",
+    "moment": "^2.24.0",
     "prop-types": "^15.7.2",
     "react": "^16.7.0",
     "react-addons-shallow-compare": "^15.6.2",
@@ -23,6 +23,7 @@
     "react-loading-skeleton": "^1.0.0",
     "react-lowlight": "^2.0.0",
     "react-markdown": "^4.0.6",
+    "react-moment": "^0.8.4",
     "react-router-bootstrap": "^0.24.4",
     "react-router-dom": "^4.3.1",
     "react-router-sitemap": "^1.2.0",

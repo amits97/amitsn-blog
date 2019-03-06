@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
 import ReactMarkdown from "react-markdown";
-import TimeAgo from "javascript-time-ago"
-import en from "javascript-time-ago/locale/en"
-import english from "javascript-time-ago/locale/en"
+import Moment from 'react-moment';
 import Skeleton from "react-loading-skeleton";
 import { Helmet } from "react-helmet";
 import Disqus from "disqus-react";
@@ -14,10 +12,6 @@ import "./Content.css";
 export default class Content extends Component {
   constructor(props) {
     super(props);
-
-    TimeAgo.addLocale(en);
-    this.timeAgo = new TimeAgo('en-US');
-
     this.removeMd = require("remove-markdown");
   }
 
@@ -31,6 +25,12 @@ export default class Content extends Component {
         window.scrollTo(0, 0);
       }
     }
+  }
+
+  formatDate(date) {
+    return(
+      <Moment format="MMMM D, YYYY">{ date }</Moment>
+    );
   }
 
   postMeta(activePost = {}) {
@@ -56,9 +56,9 @@ export default class Content extends Component {
     return(
       <div>
         <h1>{activePost.title || <Skeleton />}</h1>
-        <small className="text-muted">
-          { activePost.createdAt ? `Posted ${this.timeAgo.format(new Date(activePost.createdAt), english.long)}` : <Skeleton /> }
-        </small>
+        <span>
+          { activePost.createdAt ? this.formatDate(activePost.createdAt) : <Skeleton /> }
+        </span>
         <br />
         <hr />
       </div>
