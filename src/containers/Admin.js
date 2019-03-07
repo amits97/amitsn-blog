@@ -81,7 +81,7 @@ export default class Admin extends Component {
     return (
       <div className="Admin">
         <div className="header border-bottom">
-          <h3 className="float-left">Admin dashboard</h3>
+          <h1 className="float-left">Admin dashboard</h1>
           <LinkContainer exact to="/admin/new-post">
             <Button variant="primary" className="float-right"><span><FontAwesomeIcon icon={ faPlus } /></span>New Post</Button>
           </LinkContainer>

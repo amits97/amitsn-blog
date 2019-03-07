@@ -127,7 +127,7 @@ export default class NewPost extends Component {
         <Col>
           <Form onSubmit={this.handleSubmit}>
             <Form.Group controlId="title">
-              <Form.Control type="text" placeholder="Post title" onChange={this.handleChange} value={this.state.title} />
+              <Form.Control type="text" placeholder="Post title" onChange={this.handleChange} value={this.state.title} className="titleInput" />
             </Form.Group>
     
             <TextareaAutosize placeholder="Post content" onChange={this.handleChange} value={this.state.content} id="content" className="form-control" style={{ minHeight: 250 }} />
@@ -149,7 +149,8 @@ export default class NewPost extends Component {
         </Col>
         <Col>
           <div className="preview-pane">
-            <h3>{this.state.title}</h3>
+            <h2 className="title">{this.state.title}</h2>
+            {this.state.title ? <hr /> : ''}
             <ReactMarkdown source={this.state.content} renderers={{ code: CodeBlock }} />
           </div>
         </Col>
@@ -162,12 +163,12 @@ export default class NewPost extends Component {
 
     return (
       <div className="NewPost">
-        <h3>
+        <h1>
           <LinkContainer exact to="/admin">
             <a href="#/" className="text-primary">Admin</a>
           </LinkContainer>
           <span> <small>&raquo;</small> {`${isEditMode? "Edit Post" : "New Post"}`}</span>
-        </h3>
+        </h1>
         <hr />
         { this.renderEditor(isEditMode) }
       </div>
