@@ -22,3 +22,31 @@
 .NewPost .preview-pane {
   margin-top: 15px;
 }
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 576px) {
+  .NewPost .LoaderButton {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    padding-top: 6px;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 1020;
+    text-indent: -99999px;
+    line-height: 0;
+  }
+
+  .NewPost .LoaderButton .spinning {
+    display: none;
+  }
+
+  .NewPost .LoaderButton::after {
+    text-indent: 0;
+    display: block;
+    line-height: initial;
+    content: "GO";
+    font-weight: bold;
+  }
+}

@@ -124,7 +124,7 @@ export default class NewPost extends Component {
   
     return (
       <Row>
-        <Col>
+        <Col xs={12} md={6}>
           <Form onSubmit={this.handleSubmit}>
             <Form.Group controlId="title">
               <Form.Control type="text" placeholder="Post title" onChange={this.handleChange} value={this.state.title} className="titleInput" />
@@ -145,9 +145,9 @@ export default class NewPost extends Component {
               text={isEditMode ? "Update" : "Create"}
               loadingText={isEditMode ? "Updating…" : "Creating…"}
             />
-          </Form>        
+          </Form>
         </Col>
-        <Col>
+        <Col xs={12} md={6}>
           <div className="preview-pane">
             <h2 className="title">{this.state.title}</h2>
             {this.state.title ? <hr /> : ''}

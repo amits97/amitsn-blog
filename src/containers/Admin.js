@@ -75,6 +75,10 @@ export default class Admin extends Component {
     }
   }
 
+  handleNewPostClick = () => {
+    this.props.history.push("/admin/new-post");
+  }
+
   render() {
     let { posts, pages } = this.state;
 
@@ -111,6 +115,10 @@ export default class Admin extends Component {
             </Col>
           </Row>
         </Tab.Container>
+
+        <div className="new-post-button btn btn-primary" onClick={this.handleNewPostClick}>
+          <FontAwesomeIcon icon={ faPlus } />
+        </div>
       </div>
     );
   }

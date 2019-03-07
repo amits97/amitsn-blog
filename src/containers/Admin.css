@@ -42,3 +42,48 @@
 .Admin .list-group-item-light {
   color: #333;
 }
+
+.Admin .new-post-button {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  padding-top: 12px;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1020;
+  display: none;
+  font-size: 24px;
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 576px) {
+  .Admin .new-post-button {
+    display: block;
+  }
+
+  .Admin .header .btn {
+    display: none;
+  }
+
+  .Admin .col-sm-2 {
+    margin-top: -15px;
+  }
+
+  .Admin .nav-pills {
+    display: inline;
+  }
+
+  .Admin .nav-item {
+    float: left;
+  }
+
+  .Admin .nav-pills .nav-link.active {
+    border-left: 0;
+    border-bottom: 5px solid #17a2b8;
+  }
+
+  .Admin .tab-content {
+    margin-top: 10px;
+  }
+}

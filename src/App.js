@@ -56,6 +56,7 @@ class App extends Component {
     await Auth.signOut();
   
     this.userHasAuthenticated(false);
+    this.closeNav();
     this.props.history.push("/");
   }
 
@@ -64,7 +65,7 @@ class App extends Component {
       return(
         <React.Fragment>
           <LinkContainer to="/admin">
-            <a href="#/" className="nav-link">Admin</a>
+            <a href="#/" className="nav-link" onClick={this.closeNav}>Admin</a>
           </LinkContainer>
           <a href="#/" className="nav-link" onClick={this.handleLogout}>Logout</a>
         </React.Fragment>
