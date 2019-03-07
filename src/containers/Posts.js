@@ -68,7 +68,8 @@ export default class Posts extends Component {
     let { allPosts } = this.props;
     let post;
 
-    if(this.props.match.params.id !== prevProps.match.params.id || prevProps.allPosts && this.props.isPage) {
+    if((this.props.match.params.id !== prevProps.match.params.id)
+        || (prevProps.allPosts && this.props.isPage)) {
       if(this.props.match.params.id) {
         post = posts.filter(singlePost => singlePost.postId === this.props.match.params.id )[0];
       } else if(this.props.isPage) {
