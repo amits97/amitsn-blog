@@ -27,7 +27,7 @@ export default class Sidebar extends Component {
   }
 
   renderPostList = (posts) => {
-    return [].concat(posts).map(
+    return [].concat(posts).slice(0, 6).map(
       (post, i) =>
         <LinkContainer exact to={`/blog/${post.postId}`} key={i}>
           <a href="#/">
@@ -43,6 +43,9 @@ export default class Sidebar extends Component {
         <nav>
           <h5>LATEST POSTS</h5>
           {this.renderPostList(this.props.posts)}
+          <LinkContainer exact to="/blog/all">
+            <a href="#/">All Posts ...</a>
+          </LinkContainer>
         </nav>
       );
     } else {

@@ -6,6 +6,7 @@ import Skeleton from "react-loading-skeleton";
 import { Helmet } from "react-helmet";
 import Disqus from "disqus-react";
 import CodeBlock from "../renderers/code-renderer";
+import { LinkContainer } from "react-router-bootstrap";
 import Sidebar from "./Sidebar";
 import "./Content.css";
 
@@ -22,6 +23,9 @@ export default class Content extends Component {
   componentDidUpdate(prevProps) {
     if(prevProps.activePost && this.props.activePost) {
       if(prevProps.activePost.postId !== this.props.activePost.postId) {
+        window.scrollTo(0, 0);
+      }
+      if(this.props.allPosts && prevProps.allPosts !== true) {
         window.scrollTo(0, 0);
       }
     }
@@ -134,20 +138,68 @@ export default class Content extends Component {
     }
   }
 
-  render() {
-    return (
-      <div className="Content">
-        { this.renderSEOTags() }
+  renderAllPosts() {
+    let { isLoading, posts } = this.props;
 
-        <Row>
-          <Col sm={8}>
-            { this.renderPost() }
-          </Col>
-          <Col sm={4}>
-            <Sidebar posts={this.props.posts} />
-          </Col>
-        </Row>
-      </div>
-    );
+    if(isLoading) {
+      return (
+        <div>
+          <h1><Skeleton /></h1>
+          <hr />
+          <Skeleton count={10} />
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <h1>All Posts</h1>
+          <hr />
+          <Row>
+            {
+              [].concat(posts).map(
+                (post, i) =>
+                  <Col sm={4} key={i}>
+                    <div className="postCard">
+                      <h5>
+                        <LinkContainer exact to={`/blog/${post.postId}`} key={i}>
+                          <a href="#/">
+                            { post.title }
+                          </a>
+                        </LinkContainer>
+                      </h5>
+                      { this.formatDate(post.createdAt) }
+                    </div>
+                  </Col>
+              )
+            }
+          </Row>
+        </div>
+      );
+    }
+  }
+
+  render() {
+    if(this.props.allPosts) {
+      return (
+        <div className="Content">
+          { this.renderAllPosts() }
+        </div>
+      );
+    } else {
+      return (
+        <div className="Content">
+          { this.renderSEOTags() }
+  
+          <Row>
+            <Col sm={8}>
+              { this.renderPost() }
+            </Col>
+            <Col sm={4}>
+              <Sidebar posts={this.props.posts} />
+            </Col>
+          </Row>
+        </div>
+      );  
+    }
   }
 }

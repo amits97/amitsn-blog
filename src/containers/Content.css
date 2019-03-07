@@ -6,3 +6,21 @@
   margin-top: 0;
   margin-bottom: -3px;
 }
+
+.Content .postCard {
+  margin-bottom: 15px;
+}
+
+.Content .postCard h5 {
+  line-height: 1.5;
+}
+
+.Content .postCard h5 a {
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 2px;
+  transition: none;
+}
+
+.Content .postCard h5 a:hover {
+  border-bottom-color: rgb(51, 51, 51);
+}

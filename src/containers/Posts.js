@@ -40,7 +40,7 @@ export default class Posts extends Component {
               redirectUrl: "/"
             });
           }
-        } else {
+        } else if(this.props.allPosts !== true) {
           post = posts[0];
           this.props.history.push(`/blog/${post.postId}`);
           this.setState({
@@ -65,9 +65,10 @@ export default class Posts extends Component {
 
   async componentDidUpdate(prevProps) {
     let { posts } = this.state;
+    let { allPosts } = this.props;
     let post;
 
-    if(this.props.match.params.id !== prevProps.match.params.id) {
+    if(this.props.match.params.id !== prevProps.match.params.id || prevProps.allPosts && this.props.isPage) {
       if(this.props.match.params.id) {
         post = posts.filter(singlePost => singlePost.postId === this.props.match.params.id )[0];
       } else if(this.props.isPage) {
@@ -76,7 +77,7 @@ export default class Posts extends Component {
           activePost: {}
         });
         post = await this.page();
-      } else {
+      } else if(this.props.allPosts !== true) {
         post = posts[0];
         this.props.history.push(`/blog/${post.postId}`);
       }
@@ -88,7 +89,19 @@ export default class Posts extends Component {
 
       ReactGA.pageview(window.location.pathname + window.location.search);
     } else if(prevProps.isPage && !this.props.isPage) {
-      //User moving from a page to blog
+      if(!this.props.allPosts) {
+        //User moving from a page to blog
+        post = posts[0];
+        this.props.history.push(`/blog/${post.postId}`);
+
+        this.setState({
+          activePost: post
+        });
+      }
+
+      ReactGA.pageview(window.location.pathname + window.location.search);
+    } else if(prevProps.allPosts && !allPosts && this.props.isPage !== true) {
+      //User moving from all posts to blog
       post = posts[0];
       this.props.history.push(`/blog/${post.postId}`);
 
@@ -128,12 +141,12 @@ export default class Posts extends Component {
 
   render() {
     let { posts, isLoading, activePost } = this.state;
-    let { isPage } = this.props;
+    let { isPage, allPosts } = this.props;
 
     return (
       <div>
         { this.renderRedirect() }
-        <Content posts={posts} isLoading={isLoading} activePost={activePost} isPage={isPage} />
+        <Content posts={posts} isLoading={isLoading} activePost={activePost} isPage={isPage} allPosts={allPosts} />
       </div>
     );
   }
