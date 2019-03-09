@@ -136,10 +136,12 @@ export default class Admin extends Component {
               </Nav>
             </Col>
             <Col sm={10}>
-              <div className={`delete-container ${this.validateDeletes() ? '':'d-none'}`}>
-                <Form.Check type="checkbox" className="checkbox pt-2" onClick={this.clearCheckboxes} ref={el => this.uncheckBox = el} />
+              <div className={`delete-container border-bottom ${this.validateDeletes() ? '':'d-none'}`}>
+                <Form.Check type="checkbox" className="checkbox pt-2 pl-4 form-check" onClick={this.clearCheckboxes} ref={el => this.uncheckBox = el} />
                 <LoaderButton
-                  variant="outline-danger"
+                  variant="danger"
+                  className="mt-1"
+                  size="sm"
                   disabled={!this.validateDeletes()}
                   type="submit"
                   isLoading={this.state.isLoading}
