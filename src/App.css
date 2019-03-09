@@ -68,6 +68,13 @@
   margin-left: 2px;
 }
 
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 768px) {
+  .App footer .external-icon {
+    display: none;
+  }
+}
+
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) { 
   .App .navbar .navbar-nav a.active {
