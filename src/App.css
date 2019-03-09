@@ -61,6 +61,13 @@
   color: #ffffff;
 }
 
+.App footer .external-icon {
+  color: #666666;
+  font-size: 0.7em;
+  padding-bottom: 2px;
+  margin-left: 2px;
+}
+
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) { 
   .App .navbar .navbar-nav a.active {

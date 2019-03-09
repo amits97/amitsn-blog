@@ -111,6 +111,37 @@ export default class Admin extends Component {
     });
   }
 
+  handleSubmit = async (event) => {
+    let { postsToBeDeleted } = this.state;
+    event.preventDefault();
+
+    this.setState({
+      isLoading: true
+    });
+
+    try {
+      for(var i = 0; i < postsToBeDeleted.length; i++) {
+        await this.deletePost(postsToBeDeleted[i]);
+      }
+
+      this.setState({
+        postsToBeDeleted: []
+      });
+
+      this.componentDidMount();
+    } catch (e) {
+      this.setState({
+        isLoading: false
+      });
+
+      console.log(e);
+    }
+  }
+
+  deletePost(postId) {
+    return API.del("posts", `/posts/${postId}`);
+  }
+
   render() {
     let { posts, pages } = this.state;
 
@@ -136,27 +167,29 @@ export default class Admin extends Component {
               </Nav>
             </Col>
             <Col sm={10}>
-              <div className={`delete-container border-bottom ${this.validateDeletes() ? '':'d-none'}`}>
-                <Form.Check type="checkbox" className="checkbox pt-2 pl-4 form-check" onClick={this.clearCheckboxes} ref={el => this.uncheckBox = el} />
-                <LoaderButton
-                  variant="danger"
-                  className="mt-1"
-                  size="sm"
-                  disabled={!this.validateDeletes()}
-                  type="submit"
-                  isLoading={this.state.isLoading}
-                  text="Delete"
-                  loadingText="Deleting..."
-                />
-              </div>
-              <Tab.Content>
-                <Tab.Pane eventKey="posts">
-                  { this.renderPosts(posts) }
-                </Tab.Pane>
-                <Tab.Pane eventKey="pages">
-                { this.renderPosts(pages) }
-                </Tab.Pane>
-              </Tab.Content>
+              <Form onSubmit={this.handleSubmit}>
+                <div className={`delete-container border-bottom ${this.validateDeletes() ? '':'d-none'}`}>
+                  <Form.Check type="checkbox" className="checkbox pt-2 pl-4 form-check" onClick={this.clearCheckboxes} ref={el => this.uncheckBox = el} />
+                  <LoaderButton
+                    variant="danger"
+                    className="mt-1"
+                    size="sm"
+                    disabled={!this.validateDeletes()}
+                    type="submit"
+                    isLoading={this.state.isLoading}
+                    text="Delete"
+                    loadingText="Deleting..."
+                  />
+                </div>
+                <Tab.Content>
+                  <Tab.Pane eventKey="posts">
+                    { this.renderPosts(posts) }
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="pages">
+                  { this.renderPosts(pages) }
+                  </Tab.Pane>
+                </Tab.Content>
+              </Form>
             </Col>
           </Row>
         </Tab.Container>

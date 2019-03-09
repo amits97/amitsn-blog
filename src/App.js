@@ -4,6 +4,8 @@ import { Navbar, Nav, Container, Row, Col } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { Auth } from "aws-amplify";
 import { Helmet } from "react-helmet";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons"
 import Routes from "./Routes";
 import "highlight.js/styles/xcode.css";
 import "./App.css";
@@ -125,25 +127,25 @@ class App extends Component {
                   <Col>
                     <h6>FIND ME ON</h6>
                     <ul className="list-unstyled">
-                      <li><a href="https://github.com/amits97">Github</a></li>
-                      <li><a href="https://twitter.com/amits97">Twitter</a></li>
-                      <li><a href="https://www.linkedin.com/in/amitsn/">LinkedIn</a></li>
-                      <li><a href="https://facebook.com/amits97">Facebook</a></li>
+                      <li><a target="_blank" href="https://github.com/amits97">Github <FontAwesomeIcon className="external-icon" icon = { faExternalLinkAlt } /></a></li>
+                      <li><a target="_blank" href="https://twitter.com/amits97">Twitter <FontAwesomeIcon className="external-icon" icon = { faExternalLinkAlt } /></a></li>
+                      <li><a target="_blank" href="https://www.linkedin.com/in/amitsn/">LinkedIn <FontAwesomeIcon className="external-icon" icon = { faExternalLinkAlt } /></a></li>
+                      <li><a target="_blank" href="https://facebook.com/amits97">Facebook <FontAwesomeIcon className="external-icon" icon = { faExternalLinkAlt } /></a></li>
                     </ul>
                   </Col>
                   <Col>
                     <h6>EXPLORE</h6>
                     <ul className="list-unstyled">
-                      <li><a href="https://www.naadanchords.com">Naadan Chords</a></li>
+                      <li><a target="_blank" href="https://www.naadanchords.com">Naadan Chords <FontAwesomeIcon className="external-icon" icon = { faExternalLinkAlt } /></a></li>
                     </ul>
                     <h6>MUSIC</h6>
                     <ul className="list-unstyled">
-                      <li><a href="https://www.soundcloud.com/asn">SoundCloud</a></li>
+                      <li><a target="_blank" href="https://www.soundcloud.com/asn">SoundCloud <FontAwesomeIcon className="external-icon" icon = { faExternalLinkAlt } /></a></li>
                     </ul>
                     <h6>WRITING</h6>
                     <ul className="list-unstyled">
-                      <li><a href="https://tutsplus.com/authors/amit-s-namboothiry">Envato Tuts+</a></li>
-                      <li><a href="https://medium.com/@amits97">Medium</a></li>
+                      <li><a target="_blank" href="https://tutsplus.com/authors/amit-s-namboothiry">Envato Tuts+ <FontAwesomeIcon className="external-icon" icon = { faExternalLinkAlt } /></a></li>
+                      <li><a target="_blank" href="https://medium.com/@amits97">Medium <FontAwesomeIcon className="external-icon" icon = { faExternalLinkAlt } /></a></li>
                     </ul>
                   </Col>
                 </Row>
