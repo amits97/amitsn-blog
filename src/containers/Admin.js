@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { API } from "aws-amplify";
-import { Button, ListGroup, Tab, Row, Col, Nav } from "react-bootstrap";
+import { Button, ListGroup, Tab, Row, Col, Nav, Form } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import Skeleton from "react-loading-skeleton";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPlus } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import LoaderButton from "../components/LoaderButton";
 import "./Admin.css";
 
 export default class Admin extends Component {
@@ -14,12 +15,14 @@ export default class Admin extends Component {
     this.state = {
       posts: [],
       pages: [],
-      isLoading: true
+      isLoading: true,
+      postsToBeDeleted: []
     };
   }
 
   async componentDidMount() {
     window.scrollTo(0, 0);
+    this.uncheckBox.indeterminate = true;
 
     try {
       const posts = await this.posts();
@@ -43,6 +46,22 @@ export default class Admin extends Component {
     return API.get("posts", "/posts?postType=PAGE");
   }
 
+  addPostToDelete = (event, postId) => {
+    let postsToBeDeleted = this.state.postsToBeDeleted;
+
+    if(event.target.checked) {
+      postsToBeDeleted.push(postId);
+    } else {
+      postsToBeDeleted = postsToBeDeleted.filter(function(post){
+        return post !== postId;
+      });
+    }
+
+    this.setState({
+      postsToBeDeleted: postsToBeDeleted
+    });
+  }
+
   renderPosts(posts) {
     let { isLoading } = this.state;
 
@@ -59,6 +78,7 @@ export default class Admin extends Component {
             posts.map((post, i) => {
               return (
                 <ListGroup.Item key={i}>
+                  <Form.Check type="checkbox" className="checkbox" onChange={(event) => this.addPostToDelete(event, post.postId)} checked={this.state.postsToBeDeleted.indexOf(post.postId) !== -1} />
                   <LinkContainer exact to={`/admin/edit-post/${post.postId}`}>
                     <a href="#/" className="text-primary">{ post.title }</a>
                   </LinkContainer>
@@ -79,13 +99,25 @@ export default class Admin extends Component {
     this.props.history.push("/admin/new-post");
   }
 
+  validateDeletes() {
+    return this.state.postsToBeDeleted.length > 0;
+  }
+
+  clearCheckboxes = () => {
+    this.uncheckBox.indeterminate = true;
+
+    this.setState({
+      postsToBeDeleted: []
+    });
+  }
+
   render() {
     let { posts, pages } = this.state;
 
     return (
       <div className="Admin">
         <div className="header border-bottom">
-          <h1 className="float-left">Admin dashboard</h1>
+          <h1 className="float-left">Admin</h1>
           <LinkContainer exact to="/admin/new-post">
             <Button variant="primary" className="float-right"><span><FontAwesomeIcon icon={ faPlus } /></span>New Post</Button>
           </LinkContainer>
@@ -96,14 +128,25 @@ export default class Admin extends Component {
             <Col sm={2}>
               <Nav variant="pills" className="flex-column">
                 <Nav.Item>
-                  <Nav.Link eventKey="posts">Posts</Nav.Link>
+                  <Nav.Link eventKey="posts" onClick={this.clearCheckboxes}>Posts</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="pages">Pages</Nav.Link>
+                  <Nav.Link eventKey="pages" onClick={this.clearCheckboxes}>Pages</Nav.Link>
                 </Nav.Item>
               </Nav>
             </Col>
             <Col sm={10}>
+              <div className={`delete-container ${this.validateDeletes() ? '':'d-none'}`}>
+                <Form.Check type="checkbox" className="checkbox pt-2" onClick={this.clearCheckboxes} ref={el => this.uncheckBox = el} />
+                <LoaderButton
+                  variant="outline-danger"
+                  disabled={!this.validateDeletes()}
+                  type="submit"
+                  isLoading={this.state.isLoading}
+                  text="Delete"
+                  loadingText="Deleting..."
+                />
+              </div>
               <Tab.Content>
                 <Tab.Pane eventKey="posts">
                   { this.renderPosts(posts) }

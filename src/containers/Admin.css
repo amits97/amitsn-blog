@@ -56,6 +56,15 @@
   font-size: 24px;
 }
 
+.Admin .delete-container {
+  margin-bottom: 10px;
+}
+
+.Admin .checkbox {
+  float: left;
+  margin-right: 10px;
+}
+
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 576px) {
   .Admin .new-post-button {
@@ -81,6 +90,10 @@
   .Admin .nav-pills .nav-link.active {
     border-left: 0;
     border-bottom: 5px solid #17a2b8;
+  }
+
+  .Admin .delete-container {
+    margin-top: 20px;
   }
 
   .Admin .tab-content {
