@@ -59,7 +59,12 @@ export default class NewPost extends Component {
           content: this.state.content,
           type: this.state.type
         });
-        this.props.history.push("/blog");
+        
+        if(this.state.type === "PAGE") {
+          this.props.history.push("/admin");
+        } else {
+          this.props.history.push("/blog");
+        }
       }
     } catch (e) {
       alert(e);

@@ -61,6 +61,11 @@
   padding-bottom: 15px;
 }
 
+.Admin .delete-container .btn {
+  height: 30px;
+  padding-top: 2px;
+}
+
 .Admin .checkbox {
   float: left;
   margin-right: 10px;
