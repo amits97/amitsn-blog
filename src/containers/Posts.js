@@ -50,12 +50,15 @@ export default class Posts extends Component {
         }
       }
 
+      this.setState({
+        posts: posts
+      });
+
       if(post && !post.content) {
         post = await this.loadPageContents();
       }
 
       this.setState({
-        posts: posts,
         activePost: post,
         isLoading: false
       });
