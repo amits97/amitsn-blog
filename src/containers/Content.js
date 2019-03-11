@@ -42,7 +42,7 @@ export default class Content extends Component {
       return(
         <div className="welcome">
           <h1>
-            { activePost.content ? "Hi 👋" : <Skeleton /> }
+            { activePost.title ? "Hi 👋" : <Skeleton /> }
           </h1>
         </div>
       );

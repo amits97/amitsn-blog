@@ -8,7 +8,8 @@ export async function main(event, context) {
     ExpressionAttributeValues: {
       ":postType": event.postType || "POST",
     },
-    ScanIndexForward: false
+    ScanIndexForward: false,
+    ProjectionExpression: "postId, createdAt, postType, title"
   };
 
   try {
