@@ -50,7 +50,7 @@ export default class Posts extends Component {
         }
       }
 
-      if(!post.content) {
+      if(post && !post.content) {
         post = await this.loadPageContents();
       }
 
@@ -87,7 +87,7 @@ export default class Posts extends Component {
         this.props.history.push(`/blog/${post.postId}`);
       }
 
-      if(!post.content) {
+      if(post && !post.content) {
         post = await this.loadPageContents();
       }
 
@@ -103,10 +103,10 @@ export default class Posts extends Component {
         post = posts[0];
         this.props.history.push(`/blog/${post.postId}`);
 
-        if(!post.content) {
+        if(post && !post.content) {
           post = await this.loadPageContents();
         }
-  
+
         this.setState({
           activePost: post
         });
@@ -118,7 +118,7 @@ export default class Posts extends Component {
       post = posts[0];
       this.props.history.push(`/blog/${post.postId}`);
 
-      if(!post.content) {
+      if(post && !post.content) {
         post = await this.loadPageContents();
       }
 
@@ -145,13 +145,18 @@ export default class Posts extends Component {
     }
   }
 
-  loadPageContents() {
+  async loadPageContents() {
     this.setState({
       activePost: {},
       isLoading: true
     });
-    
-    return this.page();
+
+    try {
+      let post = await this.page();
+      return post;
+    } catch(e) {
+      return;
+    }
   }
 
   renderRedirect() {
