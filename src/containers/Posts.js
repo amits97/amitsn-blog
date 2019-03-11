@@ -139,7 +139,7 @@ export default class Posts extends Component {
 
     if(pageId) {
       return API.get("posts", `/posts/${this.props.match.params.id}`);
-    } else {
+    } else if(this.props.isPage) {
       //Load home page if no page ID present
       return API.get("posts", `/posts/home`);
     }
