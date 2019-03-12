@@ -88,6 +88,7 @@ export default class Posts extends Component {
       } else if(this.props.allPosts !== true) {
         post = posts[0];
         this.props.history.push(`/blog/${post.postId}`);
+        return;
       }
 
       if(post && !post.content) {
