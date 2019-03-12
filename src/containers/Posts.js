@@ -20,8 +20,12 @@ export default class Posts extends Component {
   async componentDidMount() {
     try {
       const posts = await this.posts();
-      let post = {};
 
+      this.setState({
+        posts: posts
+      });
+
+      let post = {};
       if(this.props.match.params.id && !this.props.isPage) {
         post = posts.filter(singlePost => singlePost.postId === this.props.match.params.id )[0];
       } else {
@@ -49,10 +53,6 @@ export default class Posts extends Component {
           });
         }
       }
-
-      this.setState({
-        posts: posts
-      });
 
       if(post && !post.content) {
         post = await this.loadPageContents();
