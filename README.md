@@ -1,5 +1,7 @@
-# AMITSN
-This is the source code for my personal website / blog: https://www.amitsn.com
+## AMITSN
+Source code for my personal website / blog: https://www.amitsn.com
+
+> This project is a `create-react-app` application which communicates with a [serverless](https://serverless.com/) backend. Powered by AWS Services and Prerender.io for SEO benefits.
 
 At a high level, this is how the project is split:
 * **Backend API** - Managed by serverless. Uses AWS Lambda over API Gateway to fetch data from DynamoDB.
