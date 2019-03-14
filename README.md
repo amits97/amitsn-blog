@@ -1,4 +1,4 @@
-## Serverless React Single Page Application for amitsn.com
+# AMITSN
 This is the source code for my personal website / blog: https://www.amitsn.com
 
 At a high level, this is how the project is split:
