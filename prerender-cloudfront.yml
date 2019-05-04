@@ -52,7 +52,7 @@ Resources:
             Version: 2012-10-17
             Statement:
               - Resource: "*"
-                Effect: Allow
+                Effect: Deny
                 Action:
                   - "logs:CreateLogGroup"
                   - "logs:CreateLogStream"
