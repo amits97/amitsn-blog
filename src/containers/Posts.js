@@ -169,7 +169,7 @@ export default class Posts extends Component {
         <Helmet>
           <meta name="prerender-status-code" content="301" />
           <meta name="prerender-header" content={`Location: https://www.amitsn.com${this.state.redirectUrl}`} />
-        </Helmet>        
+        </Helmet>
       );
     }
   }
