@@ -67,7 +67,7 @@ export default class NewPost extends Component {
         }
       }
     } catch (e) {
-      alert(e);
+      console.log(e);
       this.setState({ isLoading: false });
     }
   }
