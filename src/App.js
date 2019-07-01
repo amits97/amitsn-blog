@@ -86,9 +86,9 @@ class App extends Component {
       <div className="App">
         <Helmet>
           <meta charSet="utf-8" />
-          <title>Amit S Namboothiry | Web Development Engineer</title>
-          <meta name="description" content="Personal website and blog of Amit S Namboothiry,  a Web Development Engineer with good experience and passion for making clean and elegant websites." />
-          <meta property="og:description" content="Personal website and blog of Amit S Namboothiry,  a Web Development Engineer with good experience and passion for making clean and elegant websites." />
+          <title>Amit S Namboothiry | Front End Engineer</title>
+          <meta name="description" content="Personal website and blog of Amit S Namboothiry,  a Front End Engineer with good experience and passion for making clean and elegant websites." />
+          <meta property="og:description" content="Personal website and blog of Amit S Namboothiry,  a Front End Engineer with good experience and passion for making clean and elegant websites." />
           <meta property="og:image" content={`${window.location.origin.toString()}/android-chrome-256x256.png`} />
         </Helmet>
 
