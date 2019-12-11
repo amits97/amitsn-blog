@@ -30,6 +30,7 @@
     "react-router-sitemap": "^1.2.0",
     "react-scripts": "^3.3.0",
     "remove-markdown": "^0.3.0",
+    "serialize-javascript": "^2.1.2",
     "typescript": "^3.6.2"
   },
   "scripts": {
