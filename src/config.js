@@ -1,7 +1,7 @@
 export default {
   apiGateway: {
     REGION: "ap-south-1",
-    URL: "https://z2omr5hyda.execute-api.ap-south-1.amazonaws.com/prod"
+    URL: "https://api.amitsn.com"
   },
   cognito: {
     REGION: "ap-south-1",

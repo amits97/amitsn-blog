@@ -14,7 +14,7 @@ export default class Sidebar extends Component {
     };
   }
 
-  UNSAFE_componentDidUpdate() {
+  UNSAFE_componentWillUpdate() {
     if(this.state.mobileSidebarOpened) {
       this.handleMobileSidebarClick();
     }
