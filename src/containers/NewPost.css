@@ -23,6 +23,11 @@
   margin-top: 15px;
 }
 
+.NewPost .preview-pane a {
+  text-decoration: underline;
+  background: #eee;
+}
+
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 576px) {
   .NewPost .LoaderButton {

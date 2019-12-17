@@ -24,3 +24,8 @@
 .Content .postCard h5 a:hover {
   border-bottom-color: rgb(51, 51, 51);
 }
+
+.Content .post-content a {
+  text-decoration: underline;
+  background: #eee;
+}

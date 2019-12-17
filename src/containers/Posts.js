@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { API } from "aws-amplify";
 import ReactGA from "react-ga";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import Content from "./Content";
 
 export default class Posts extends Component {

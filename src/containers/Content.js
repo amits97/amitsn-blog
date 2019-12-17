@@ -3,7 +3,7 @@ import { Row, Col } from "react-bootstrap";
 import ReactMarkdown from "react-markdown";
 import Moment from 'react-moment';
 import Skeleton from "react-loading-skeleton";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import Disqus from "disqus-react";
 import CodeBlock from "../renderers/code-renderer";
 import { LinkContainer } from "react-router-bootstrap";
@@ -105,7 +105,7 @@ export default class Content extends Component {
     };
 
     return(
-      <div>
+      <div className="post-content">
         { this.postMeta(activePost) }
         { activePost.content ? <ReactMarkdown source={activePost.content} renderers={{ code: CodeBlock }} /> : <Skeleton count={15} /> }
         { this.props.isPage ? null : <div><hr /><Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig} /></div> }
