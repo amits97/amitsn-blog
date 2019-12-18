@@ -28,6 +28,16 @@ export default class Posts extends Component {
       let post = {};
       if(this.props.match.params.id && !this.props.isPage) {
         post = posts.filter(singlePost => singlePost.postId === this.props.match.params.id )[0];
+        if(!post) {
+          post = await this.post();
+          if(post.postId !== this.props.match.params.id) {
+            this.props.history.push(`/blog/${post.postId}`);
+            this.setState({
+              redirect: true,
+              redirectUrl: `/blog/${post.postId}`
+            });
+          }
+        }
       } else {
         if(this.props.isPage) {
           try {
@@ -136,6 +146,10 @@ export default class Posts extends Component {
 
   posts() {
     return API.get("posts", "/posts");
+  }
+
+  post() {
+    return API.get("posts", `/posts/${this.props.match.params.id}`);
   }
 
   page() {
