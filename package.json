@@ -31,7 +31,7 @@
     "react-router-sitemap": "^1.2.0",
     "react-scripts": "^3.4.1",
     "remove-markdown": "^0.3.0",
-    "serialize-javascript": "^2.1.2",
+    "serialize-javascript": "^3.1.0",
     "typescript": "^3.8.3"
   },
   "resolutions": {
