@@ -31,7 +31,7 @@
     "ajv": "^6.12.2",
     "babel-runtime": "^6.26.0",
     "cryptiles": ">=4.1.2",
-    "serialize-javascript": "^2.1.2",
+    "serialize-javascript": "^3.1.0",
     "serverless": "^1.70.0",
     "serverless-domain-manager": "^3.3.2",
     "set-value": "^3.0.2",
