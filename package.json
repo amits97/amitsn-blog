@@ -1,7 +1,7 @@
 {
   "name": "amitsn-blog-client",
   "homepage": "https://www.amitsn.com/",
-  "version": "0.12.6",
+  "version": "0.12.7",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.30",

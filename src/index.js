@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from "react-router-dom";
-import Amplify from "aws-amplify";
+import Amplify, { Auth } from "aws-amplify";
 import config from "./config";
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-Amplify.configure({
+const awsconfig = {
   Auth: {
     mandatorySignIn: true,
     region: config.cognito.REGION,
@@ -24,7 +24,10 @@ Amplify.configure({
       },
     ]
   }
-});
+};
+
+Amplify.configure(awsconfig);
+Auth.configure(awsconfig);
 
 ReactDOM.render(
   <Router>
