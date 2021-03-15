@@ -1,4 +1,4 @@
-export default {
+const config = {
   apiGateway: {
     REGION: "ap-south-1",
     URL: "https://api.amitsn.com"
@@ -10,3 +10,5 @@ export default {
     IDENTITY_POOL_ID: "ap-south-1:81a2b4d0-0239-48fc-b8e0-d31e9f87840b"
   }
 };
+
+export default config;

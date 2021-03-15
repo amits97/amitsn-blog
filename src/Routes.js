@@ -9,7 +9,7 @@ import Posts from "./containers/Posts";
 import Admin from "./containers/Admin";
 import NotFound from "./containers/NotFound";
 
-export default ({ childProps }) =>
+const Routes = ({ childProps }) =>
   <Switch>
     <AppliedRoute path="/" exact component={Posts} props={{isPage: true, ...childProps}} />
     <AuthenticatedRoute path="/admin" exact component={Admin} props={childProps} />
@@ -23,3 +23,5 @@ export default ({ childProps }) =>
     { /* Finally, catch all unmatched routes */ }
     <Route component={NotFound} />
   </Switch>;
+
+export default Routes;
