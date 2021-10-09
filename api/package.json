@@ -34,7 +34,7 @@
     "serialize-javascript": "^4.0.0",
     "serverless": "^2.29.0",
     "serverless-domain-manager": "^4.2.0",
-    "set-value": "^3.0.2",
+    "set-value": "^4.0.1",
     "source-map-support": "^0.5.19"
   }
 }
