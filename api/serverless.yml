@@ -3,7 +3,6 @@ service: amitsn-blog-api
 # Use the serverless-webpack plugin to transpile ES6
 plugins:
   - serverless-webpack
-  - serverless-offline
   - serverless-domain-manager
 
 # serverless-webpack configuration
