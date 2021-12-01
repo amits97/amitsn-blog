@@ -1,14 +1,16 @@
 {
   "name": "amitsn-blog-client",
   "homepage": "https://www.amitsn.com/",
-  "version": "0.13.3",
+  "version": "0.13.4",
   "private": true,
   "dependencies": {
+    "@aws-sdk/shared-ini-file-loader": "^3.37.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@fortawesome/react-fontawesome": "^0.1.11",
     "aws-amplify": "^3.0.23",
     "create-react-class": "^15.6.3",
+    "debug": "^4.3.3",
     "disqus-react": "^1.0.9",
     "highlight.js": "^11.3.1",
     "moment": "^2.27.0",
@@ -33,6 +35,9 @@
     "remove-markdown": "^0.3.0",
     "serialize-javascript": "^4.0.0",
     "typescript": "^3.9.7"
+  },
+  "resolutions": {
+    "ansi-html": "https://registry.npmjs.org/ansi-html-community/-/ansi-html-community-0.0.8.tgz"
   },
   "scripts": {
     "preinstall": "npx npm-force-resolutions",
