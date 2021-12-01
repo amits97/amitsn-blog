@@ -1,7 +1,7 @@
 {
   "name": "amitsn-blog-client",
   "homepage": "https://www.amitsn.com/",
-  "version": "0.13.1",
+  "version": "0.13.3",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
@@ -10,7 +10,7 @@
     "aws-amplify": "^3.0.23",
     "create-react-class": "^15.6.3",
     "disqus-react": "^1.0.9",
-    "highlight.js": "^10.0.2",
+    "highlight.js": "^11.3.1",
     "moment": "^2.27.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
@@ -22,7 +22,7 @@
     "react-ga": "^3.1.2",
     "react-helmet-async": "^1.0.6",
     "react-loading-skeleton": "^2.1.1",
-    "react-lowlight": "^2.0.0",
+    "react-lowlight": "^3.0.0",
     "react-markdown": "^4.3.1",
     "react-moment": "^0.9.7",
     "react-router": "^5.2.0",
