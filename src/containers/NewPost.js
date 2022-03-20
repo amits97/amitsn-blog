@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Form, Row, Col } from "react-bootstrap";
 import ReactMarkdown from "react-markdown";
-import htmlParser from "react-markdown/plugins/html-parser";
 import LoaderButton from "../components/LoaderButton";
 import { API } from "aws-amplify";
 import { LinkContainer } from "react-router-bootstrap";
@@ -13,8 +12,6 @@ import "./NewPost.css";
 export default class NewPost extends Component {
   constructor(props) {
     super(props);
-
-    this.parseHtml = htmlParser();
 
     this.state = {
       isLoading: null,
@@ -156,7 +153,9 @@ export default class NewPost extends Component {
           <div className="preview-pane">
             <h2 className="title">{this.state.title}</h2>
             {this.state.title ? <hr /> : ''}
-            <ReactMarkdown source={this.state.content} renderers={{ code: CodeBlock }} />
+            <ReactMarkdown components={{ code: CodeBlock }}>
+              {this.state.content}
+            </ReactMarkdown>
           </div>
         </Col>
       </Row>

@@ -107,7 +107,7 @@ export default class Content extends Component {
     return(
       <div className="post-content">
         { this.postMeta(activePost) }
-        { activePost.content ? <ReactMarkdown source={activePost.content} renderers={{ code: CodeBlock }} /> : <Skeleton count={15} /> }
+        { activePost.content ? <ReactMarkdown components={{ code: CodeBlock }} >{activePost.content}</ReactMarkdown> : <Skeleton count={15} /> }
         { this.props.isPage ? null : <div><hr /><Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig} /></div> }
       </div>
     );

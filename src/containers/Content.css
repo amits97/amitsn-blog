@@ -29,3 +29,11 @@
   text-decoration: underline;
   background: #eee;
 }
+
+.Content pre.lowlight {
+  padding: 0;
+  margin: 0;
+  background: initial;
+  border: none;
+  font-size: inherit;
+}

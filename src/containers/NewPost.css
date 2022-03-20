@@ -28,6 +28,14 @@
   background: #eee;
 }
 
+.NewPost pre.lowlight {
+  padding: 0;
+  margin: 0;
+  background: initial;
+  border: none;
+  font-size: inherit;
+}
+
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 576px) {
   .NewPost .LoaderButton {
