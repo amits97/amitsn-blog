@@ -35,5 +35,8 @@
     "serverless-domain-manager": "^6.0.4",
     "set-value": "^4.0.1",
     "source-map-support": "^0.5.19"
+  },
+  "overrides": {
+    "json5": ">=2.2.2"
   }
 }
