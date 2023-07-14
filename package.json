@@ -1,7 +1,7 @@
 {
   "name": "amitsn-blog-client",
   "homepage": "https://www.amitsn.com/",
-  "version": "0.16.2",
+  "version": "0.16.3",
   "private": true,
   "dependencies": {
     "@aws-sdk/shared-ini-file-loader": "^3.54.1",
@@ -39,6 +39,10 @@
     "remove-markdown": "^0.3.0",
     "serialize-javascript": "^6.0.0",
     "typescript": "^4.6.2"
+  },
+  "overrides": {
+    "json5": ">=2.2.2",
+    "semver": ">=7.5.2"
   },
   "scripts": {
     "start": "react-app-rewired start",
