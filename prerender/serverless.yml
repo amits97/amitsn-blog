@@ -1,0 +1,47 @@
+service: amitsn-blog-prerender
+provider:
+  name: aws
+  versionFunctions: false
+  runtime: nodejs18.x
+  stage: ${opt:stage,'prod'}
+  region: ap-south-1
+  memorySize: 2048
+  timeout: 20
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:ap-south-1:*:*"
+    - Effect: Deny
+      Action:
+        - logs:CreateLogGroup
+        - logs:CreateLogStream
+        - logs:PutLogEvents
+      Resource: "*"
+plugins:
+  - serverless-webpack
+  - serverless-domain-manager
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+  objectPrefix: "${self:service}-${self:provider.stage}"
+  customDomain:
+    domainName: prerender.amitsn.com
+    basePath: ""
+    stage: ${self:provider.stage}
+    createRoute53Record: true
+functions:
+  prerender:
+    handler: prerender.handler
+    events:
+      - http:
+          path: prerender
+          method: get
+          cors: true

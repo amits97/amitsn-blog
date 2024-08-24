@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
 import ReactMarkdown from "react-markdown";
-import Moment from 'react-moment';
+import Moment from "react-moment";
 import Skeleton from "react-loading-skeleton";
 import { Helmet } from "react-helmet-async";
 import Disqus from "disqus-react";
@@ -21,47 +21,45 @@ export default class Content extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if(prevProps.activePost && this.props.activePost) {
-      if(prevProps.activePost.postId !== this.props.activePost.postId) {
+    if (prevProps.activePost && this.props.activePost) {
+      if (prevProps.activePost.postId !== this.props.activePost.postId) {
         window.scrollTo(0, 0);
       }
-      if(this.props.allPosts && prevProps.allPosts !== true) {
+      if (this.props.allPosts && prevProps.allPosts !== true) {
         window.scrollTo(0, 0);
       }
     }
   }
 
   formatDate(date) {
-    return(
-      <Moment format="MMMM D, YYYY">{ date }</Moment>
-    );
+    return <Moment format="MMMM D, YYYY">{date}</Moment>;
   }
 
   postMeta(activePost = {}) {
-    if(activePost.postId === "home") {
-      return(
+    if (activePost.postId === "home") {
+      return (
         <div className="welcome">
-          <h1>
-            { activePost.title ? "Hi 👋" : <Skeleton /> }
-          </h1>
+          <h1>{activePost.title ? "Hi 👋" : <Skeleton />}</h1>
         </div>
       );
-    } else if(this.props.isPage) {
-      return(
+    } else if (this.props.isPage) {
+      return (
         <div>
-          <h1>
-            {activePost.title || <Skeleton />}
-          </h1>
+          <h1>{activePost.title || <Skeleton />}</h1>
           <hr />
         </div>
       );
     }
 
-    return(
+    return (
       <div>
         <h1>{activePost.title || <Skeleton />}</h1>
         <span>
-          { activePost.createdAt ? this.formatDate(activePost.createdAt) : <Skeleton /> }
+          {activePost.createdAt ? (
+            this.formatDate(activePost.createdAt)
+          ) : (
+            <Skeleton />
+          )}
         </span>
         <br />
         <hr />
@@ -72,9 +70,9 @@ export default class Content extends Component {
   renderPost() {
     let { posts, isLoading, activePost = {} } = this.props;
 
-    if(!isLoading) {
-      if(posts.length === 0) {
-        return(
+    if (!isLoading) {
+      if (posts.length === 0) {
+        return (
           <div>
             <Helmet>
               <meta name="prerender-status-code" content="501" />
@@ -84,15 +82,15 @@ export default class Content extends Component {
         );
       }
 
-      if(!activePost.postId) {
-        return(
+      if (!activePost.postId) {
+        return (
           <div>
             <Helmet>
               <meta name="prerender-status-code" content="501" />
             </Helmet>
             <h3>Page not found!</h3>
           </div>
-        );       
+        );
       }
     }
 
@@ -101,14 +99,28 @@ export default class Content extends Component {
     let disqusConfig = {
       url: `https://www.amitsn.com/blog/${activePost.postId}`,
       identifier: activePost.postId,
-      title: activePost.title
+      title: activePost.title,
     };
 
-    return(
+    return (
       <div className="post-content">
-        { this.postMeta(activePost) }
-        { activePost.content ? <ReactMarkdown components={{ code: CodeBlock }} >{activePost.content}</ReactMarkdown> : <Skeleton count={15} /> }
-        { this.props.isPage ? null : <div><hr /><Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig} /></div> }
+        {this.postMeta(activePost)}
+        {activePost.content ? (
+          <ReactMarkdown components={{ code: CodeBlock }}>
+            {activePost.content}
+          </ReactMarkdown>
+        ) : (
+          <Skeleton count={15} />
+        )}
+        {this.props.isPage ? null : (
+          <div>
+            <hr />
+            <Disqus.DiscussionEmbed
+              shortname={disqusShortname}
+              config={disqusConfig}
+            />
+          </div>
+        )}
       </div>
     );
   }
@@ -116,21 +128,30 @@ export default class Content extends Component {
   renderSEOTags() {
     let { activePost = {} } = this.props;
 
-    if(activePost.postId) {
-      if(activePost.title !== "Home") {
+    if (activePost.postId) {
+      if (activePost.title !== "Home") {
         let description = activePost.content.substring(0, 157).trim();
-        description = description.substr(0, Math.min(description.length, description.lastIndexOf(" "))) + "..";
+        description =
+          description.substr(
+            0,
+            Math.min(description.length, description.lastIndexOf(" "))
+          ) + "..";
 
         let imageURL = activePost.content.match(/!\[.*?\]\((.*?)\)/);
-        imageURL = imageURL ? imageURL[1] : `${window.location.origin.toString()}/android-chrome-256x256.png`;
+        imageURL = imageURL
+          ? imageURL[1]
+          : `${window.location.origin.toString()}/android-chrome-256x256.png`;
 
-        return(
+        return (
           <Helmet>
             <title>{activePost.title} | Amit S Namboothiry</title>
             <meta name="description" content={this.removeMd(description)} />
             <meta name="twitter:card" content="summary" />
             <meta property="og:title" content={activePost.title} />
-            <meta property="og:description" content={this.removeMd(description)} />
+            <meta
+              property="og:description"
+              content={this.removeMd(description)}
+            />
             <meta property="og:image" content={imageURL} />
           </Helmet>
         );
@@ -141,37 +162,34 @@ export default class Content extends Component {
   renderAllPosts() {
     let { isLoading, posts } = this.props;
 
-    if(isLoading) {
+    if (isLoading) {
       return (
         <div>
-          <h1><Skeleton /></h1>
+          <h1>
+            <Skeleton />
+          </h1>
           <hr />
           <Skeleton count={10} />
         </div>
-      )
+      );
     } else {
       return (
         <div>
           <h1>All Posts</h1>
           <hr />
           <Row>
-            {
-              [].concat(posts).map(
-                (post, i) =>
-                  <Col sm={4} key={i}>
-                    <div className="postCard">
-                      <h5>
-                        <LinkContainer exact to={`/blog/${post.postId}`} key={i}>
-                          <a href="#/">
-                            { post.title }
-                          </a>
-                        </LinkContainer>
-                      </h5>
-                      { this.formatDate(post.createdAt) }
-                    </div>
-                  </Col>
-              )
-            }
+            {[].concat(posts).map((post, i) => (
+              <Col sm={4} key={i}>
+                <div className="postCard">
+                  <h5>
+                    <LinkContainer exact to={`/blog/${post.postId}`} key={i}>
+                      <a href="#/">{post.title}</a>
+                    </LinkContainer>
+                  </h5>
+                  {this.formatDate(post.createdAt)}
+                </div>
+              </Col>
+            ))}
           </Row>
         </div>
       );
@@ -179,27 +197,21 @@ export default class Content extends Component {
   }
 
   render() {
-    if(this.props.allPosts) {
-      return (
-        <div className="Content">
-          { this.renderAllPosts() }
-        </div>
-      );
+    if (this.props.allPosts) {
+      return <div className="Content">{this.renderAllPosts()}</div>;
     } else {
       return (
         <div className="Content">
-          { this.renderSEOTags() }
-  
+          {this.renderSEOTags()}
+
           <Row>
-            <Col sm={8}>
-              { this.renderPost() }
-            </Col>
+            <Col sm={8}>{this.renderPost()}</Col>
             <Col sm={4}>
               <Sidebar posts={this.props.posts} />
             </Col>
           </Row>
         </div>
-      );  
+      );
     }
   }
 }
