@@ -1,7 +1,7 @@
 {
   "name": "amitsn-blog-client",
   "homepage": "https://www.amitsn.com/",
-  "version": "0.18.9",
+  "version": "0.19.1",
   "private": true,
   "dependencies": {
     "@aws-sdk/shared-ini-file-loader": "^3.54.1",
@@ -43,7 +43,9 @@
   },
   "overrides": {
     "json5": ">=2.2.2",
-    "semver": ">=7.5.2"
+    "semver": ">=7.5.2",
+    "postcss": ">=8.4.31",
+    "nth-check": ">=2.0.1"
   },
   "scripts": {
     "start": "react-app-rewired start",
@@ -72,6 +74,7 @@
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
+    "@babel/plugin-proposal-private-property-in-object": "^7.0.0",
     "@fortawesome/fontawesome-free": "^6.1.0",
     "react-app-rewired": "^2.2.1"
   }
