@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Alert, FormGroup, FormControl, FormLabel } from "react-bootstrap";
-import { Auth } from "aws-amplify";
+import { signIn } from "aws-amplify/auth";
 import LoaderButton from "../components/LoaderButton";
 import "./Login.css";
 
@@ -13,7 +13,7 @@ export default class Login extends Component {
       email: "",
       password: "",
       isErrorState: false,
-      errorMessage: ""
+      errorMessage: "",
     };
   }
 
@@ -21,38 +21,37 @@ export default class Login extends Component {
     return this.state.email.length > 0 && this.state.password.length > 0;
   }
 
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({
-      [event.target.id]: event.target.value
+      [event.target.id]: event.target.value,
     });
-  }
+  };
 
-  handleSubmit = async event => {
+  handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     this.setState({ isLoading: true });
 
     try {
-      await Auth.signIn(this.state.email, this.state.password);
+      await signIn({
+        username: this.state.email,
+        password: this.state.password,
+      });
       this.props.userHasAuthenticated(true);
     } catch (e) {
       this.setState({
         isLoading: false,
         isErrorState: true,
-        errorMessage: e.message
+        errorMessage: e.message,
       });
     }
-  }
+  };
 
   renderError = () => {
-    if(this.state.isErrorState) {
-      return(
-        <Alert variant="danger">
-          {this.state.errorMessage}
-        </Alert>
-      );
+    if (this.state.isErrorState) {
+      return <Alert variant="danger">{this.state.errorMessage}</Alert>;
     }
-  }
+  };
 
   render() {
     return (

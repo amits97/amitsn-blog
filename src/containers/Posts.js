@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { API } from "aws-amplify";
 import ReactGA from "react-ga";
 import { Helmet } from "react-helmet-async";
+import { API } from "../libs/utils";
 import Content from "./Content";
 
 export default class Posts extends Component {
@@ -13,7 +13,7 @@ export default class Posts extends Component {
       activePost: {},
       isLoading: true,
       redirect: false,
-      redirectUrl: ""
+      redirectUrl: "",
     };
   }
 
@@ -22,31 +22,33 @@ export default class Posts extends Component {
       const posts = await this.posts();
 
       this.setState({
-        posts: posts
+        posts: posts,
       });
 
       let post = {};
-      if(this.props.match.params.id && !this.props.isPage) {
-        post = posts.filter(singlePost => singlePost.postId === this.props.match.params.id )[0];
-        if(!post) {
+      if (this.props.match.params.id && !this.props.isPage) {
+        post = posts.filter(
+          (singlePost) => singlePost.postId === this.props.match.params.id
+        )[0];
+        if (!post) {
           try {
             post = await this.post();
-            if(post.postId !== this.props.match.params.id) {
+            if (post.postId !== this.props.match.params.id) {
               this.props.history.push(`/blog/${post.postId}`);
               this.setState({
                 redirect: true,
-                redirectUrl: `/blog/${post.postId}`
+                redirectUrl: `/blog/${post.postId}`,
               });
             }
-          } catch(e) {
+          } catch (e) {
             this.setState({
               activePost: {},
-              isLoading: false
+              isLoading: false,
             });
           }
         }
       } else {
-        if(this.props.isPage) {
+        if (this.props.isPage) {
           try {
             const page = await this.page();
             post = page;
@@ -54,30 +56,30 @@ export default class Posts extends Component {
             console.log(e);
           }
 
-          if(this.props.match.params.id === "home") {
+          if (this.props.match.params.id === "home") {
             this.props.history.push("/");
             this.setState({
               redirect: true,
-              redirectUrl: "/"
+              redirectUrl: "/",
             });
           }
-        } else if(this.props.allPosts !== true) {
+        } else if (this.props.allPosts !== true) {
           post = posts[0];
           this.props.history.push(`/blog/${post.postId}`);
           this.setState({
             redirect: true,
-            redirectUrl: `/blog/${post.postId}`
+            redirectUrl: `/blog/${post.postId}`,
           });
         }
       }
 
-      if(post && !post.content) {
+      if (post && !post.content) {
         post = await this.loadPageContents();
       }
 
       this.setState({
         activePost: post,
-        isLoading: false
+        isLoading: false,
       });
     } catch (e) {
       console.log(e);
@@ -92,59 +94,63 @@ export default class Posts extends Component {
     let { allPosts } = this.props;
     let post;
 
-    if((this.props.match.params.id !== prevProps.match.params.id)
-        || (prevProps.allPosts && this.props.isPage)) {
-      if(this.props.match.params.id) {
-        post = posts.filter(singlePost => singlePost.postId === this.props.match.params.id )[0];
-      } else if(this.props.isPage) {
+    if (
+      this.props.match.params.id !== prevProps.match.params.id ||
+      (prevProps.allPosts && this.props.isPage)
+    ) {
+      if (this.props.match.params.id) {
+        post = posts.filter(
+          (singlePost) => singlePost.postId === this.props.match.params.id
+        )[0];
+      } else if (this.props.isPage) {
         this.setState({
           isLoading: true,
-          activePost: {}
+          activePost: {},
         });
         post = await this.page();
-      } else if(this.props.allPosts !== true) {
+      } else if (this.props.allPosts !== true) {
         post = posts[0];
         this.props.history.push(`/blog/${post.postId}`);
         return;
       }
 
-      if(post && !post.content) {
+      if (post && !post.content) {
         post = await this.loadPageContents();
       }
 
       this.setState({
         isLoading: false,
-        activePost: post
+        activePost: post,
       });
 
       ReactGA.pageview(window.location.pathname + window.location.search);
-    } else if(prevProps.isPage && !this.props.isPage) {
-      if(!this.props.allPosts) {
+    } else if (prevProps.isPage && !this.props.isPage) {
+      if (!this.props.allPosts) {
         //User moving from a page to blog
         post = posts[0];
         this.props.history.push(`/blog/${post.postId}`);
 
-        if(post && !post.content) {
+        if (post && !post.content) {
           post = await this.loadPageContents();
         }
 
         this.setState({
-          activePost: post
+          activePost: post,
         });
       }
 
       ReactGA.pageview(window.location.pathname + window.location.search);
-    } else if(prevProps.allPosts && !allPosts && this.props.isPage !== true) {
+    } else if (prevProps.allPosts && !allPosts && this.props.isPage !== true) {
       //User moving from all posts to blog
       post = posts[0];
       this.props.history.push(`/blog/${post.postId}`);
 
-      if(post && !post.content) {
+      if (post && !post.content) {
         post = await this.loadPageContents();
       }
 
       this.setState({
-        activePost: post
+        activePost: post,
       });
 
       ReactGA.pageview(window.location.pathname + window.location.search);
@@ -162,9 +168,9 @@ export default class Posts extends Component {
   page() {
     let pageId = this.props.match.params.id;
 
-    if(pageId) {
+    if (pageId) {
       return API.get("posts", `/posts/${this.props.match.params.id}`);
-    } else if(this.props.isPage) {
+    } else if (this.props.isPage) {
       //Load home page if no page ID present
       return API.get("posts", `/posts/home`);
     }
@@ -173,23 +179,26 @@ export default class Posts extends Component {
   async loadPageContents() {
     this.setState({
       activePost: {},
-      isLoading: true
+      isLoading: true,
     });
 
     try {
       let post = await this.page();
       return post;
-    } catch(e) {
+    } catch (e) {
       return;
     }
   }
 
   renderRedirect() {
-    if(this.state.redirect) {
-      return(
+    if (this.state.redirect) {
+      return (
         <Helmet>
           <meta name="prerender-status-code" content="301" />
-          <meta name="prerender-header" content={`Location: https://www.amitsn.com${this.state.redirectUrl}`} />
+          <meta
+            name="prerender-header"
+            content={`Location: https://www.amitsn.com${this.state.redirectUrl}`}
+          />
         </Helmet>
       );
     }
@@ -201,8 +210,14 @@ export default class Posts extends Component {
 
     return (
       <div>
-        { this.renderRedirect() }
-        <Content posts={posts} isLoading={isLoading} activePost={activePost} isPage={isPage} allPosts={allPosts} />
+        {this.renderRedirect()}
+        <Content
+          posts={posts}
+          isLoading={isLoading}
+          activePost={activePost}
+          isPage={isPage}
+          allPosts={allPosts}
+        />
       </div>
     );
   }
