@@ -1,7 +1,7 @@
-require("babel-register")({
-  presets: ["es2015", "react"]
+require("@babel/register")({
+  presets: ["@babel/preset-env", "@babel/preset-react"],
 });
- 
+
 const router = require("./sitemap-routes").default;
 const Sitemap = require("react-router-sitemap").default;
 
@@ -13,23 +13,21 @@ async function generateSitemap() {
     const posts = await axios.get(config.apiGateway.URL + "/posts");
     let idMap = [];
 
-    for(var i = 0; i < posts.data.length; i++) {
+    for (var i = 0; i < posts.data.length; i++) {
       idMap.push({ id: posts.data[i].postId });
     }
 
     const paramsConfig = {
-      "/blog/:id": idMap
+      "/blog/:id": idMap,
     };
 
-    return (
-      new Sitemap(router)
-          .applyParams(paramsConfig)
-          .build("https://www.amitsn.com")
-          .save("./public/sitemap.xml")
-    );
-  } catch(e) {
+    return new Sitemap(router)
+      .applyParams(paramsConfig)
+      .build("https://www.amitsn.com")
+      .save("./public/sitemap.xml");
+  } catch (e) {
     console.log(e);
-  } 
+  }
 }
 
 generateSitemap();
