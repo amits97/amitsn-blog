@@ -34,7 +34,7 @@
     "ajv": "^6.12.3",
     "aws-sdk": "^2.1359.0",
     "serialize-javascript": "^4.0.0",
-    "serverless": "^3.21.0",
+    "serverless": "^4.4.10",
     "serverless-domain-manager": "^6.0.4",
     "set-value": "^4.0.1",
     "source-map-support": "^0.5.19"
