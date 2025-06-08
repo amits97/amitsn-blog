@@ -8,12 +8,12 @@ import Disqus from "disqus-react";
 import CodeBlock from "../renderers/code-renderer";
 import { LinkContainer } from "react-router-bootstrap";
 import Sidebar from "./Sidebar";
+import RemoveMarkdown from "remove-markdown";
 import "./Content.css";
 
 export default class Content extends Component {
   constructor(props) {
     super(props);
-    this.removeMd = require("remove-markdown");
   }
 
   componentDidMount() {
@@ -145,12 +145,12 @@ export default class Content extends Component {
         return (
           <Helmet>
             <title>{activePost.title} | Amit S Namboothiry</title>
-            <meta name="description" content={this.removeMd(description)} />
+            <meta name="description" content={RemoveMarkdown(description)} />
             <meta name="twitter:card" content="summary" />
             <meta property="og:title" content={activePost.title} />
             <meta
               property="og:description"
-              content={this.removeMd(description)}
+              content={RemoveMarkdown(description)}
             />
             <meta property="og:image" content={imageURL} />
           </Helmet>

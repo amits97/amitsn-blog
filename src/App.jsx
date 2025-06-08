@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 import Routes from "./Routes";
 import "highlight.js/styles/xcode.css";
+import packageDetails from "../package.json";
 import "./App.css";
 
 class App extends Component {
@@ -19,8 +20,6 @@ class App extends Component {
       isAuthenticated: false,
       isAuthenticating: true,
     };
-
-    this.packageDetails = require("../package.json");
   }
 
   setNavExpanded = (expanded) => {
@@ -153,7 +152,7 @@ class App extends Component {
                         <br />
                         <small>
                           <a href="/sitemap.xml">sitemap</a> | rev{" "}
-                          {this.packageDetails.version}
+                          {packageDetails.version}
                         </small>
                       </Col>
                       <Col>
