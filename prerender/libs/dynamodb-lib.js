@@ -1,7 +1,8 @@
-import AWS from "aws-sdk";
+import { DynamoDBDocument } from "@aws-sdk/lib-dynamodb";
+import { DynamoDB } from "@aws-sdk/client-dynamodb";
 
 export function call(action, params) {
-  const dynamoDb = new AWS.DynamoDB.DocumentClient();
+  const dynamoDb = DynamoDBDocument.from(new DynamoDB());
 
-  return dynamoDb[action](params).promise();
+  return dynamoDb[action](params);
 }

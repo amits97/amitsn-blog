@@ -4,18 +4,16 @@ import { success, failure } from "./libs/response-lib";
 async function retryGet(postId) {
   let params = {
     TableName: "AmitsnBlog",
-    ScanFilter: {
-      "postId": {
-        ComparisonOperator: "CONTAINS",
-        AttributeValueList: [postId]
-      }
-    }
+    FilterExpression: "contains(postId, :postId)",
+    ExpressionAttributeValues: {
+      ":postId": postId,
+    },
   };
 
-  if(postId.length > 2) {
+  if (postId.length > 2) {
     try {
       const result = await dynamoDbLib.call("scan", params);
-      if(result.Items.length > 0) {
+      if (result.Items.length > 0) {
         let finalResult = result.Items[0];
         // Return the retrieved item
         return success(finalResult);
@@ -33,7 +31,7 @@ async function retryGet(postId) {
 function retryLoop(postId) {
   let keywords = postId.split("-");
 
-  if(keywords.length > 1) {
+  if (keywords.length > 1) {
     keywords.pop();
     return retryGet(keywords.join("-"));
   } else {
@@ -45,7 +43,7 @@ export async function main(event) {
   const params = {
     TableName: "AmitsnBlog",
     Key: {
-      postId: event.pathParameters.id
+      postId: event.pathParameters.id,
     },
   };
 

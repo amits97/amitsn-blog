@@ -30,17 +30,19 @@
     "webpack-node-externals": "^3.0.0"
   },
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.948.0",
-    "@aws-sdk/lib-dynamodb": "^3.948.0",
+    "@aws-sdk/client-dynamodb": "^3.600.0",
+    "@aws-sdk/lib-dynamodb": "^3.600.0",
     "@babel/runtime-corejs2": "^7.26.10",
     "ajv": "^6.12.3",
     "serialize-javascript": "^6.0.2",
     "serverless": "^4.4.10",
-    "serverless-domain-manager": "^7.4.0",
+    "serverless-domain-manager": "^8.0.0",
     "set-value": "^4.0.1",
     "source-map-support": "^0.5.19"
   },
   "overrides": {
-    "json5": ">=2.2.2"
+    "json5": ">=2.2.2",
+    "semver": ">=7.5.2",
+    "@smithy/config-resolver": ">=4.4.0"
   }
 }
