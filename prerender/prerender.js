@@ -145,6 +145,9 @@ export async function handler(event) {
           } catch (e) {
             // do nothing for now
           }
+        } else if (status === "501") {
+          browser.close();
+          return custom(404, result);
         } else {
           browser.close();
           return custom(parseInt(status), result);
