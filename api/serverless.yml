@@ -2,15 +2,11 @@ service: amitsn-blog-api
 
 # Use the serverless-webpack plugin to transpile ES6
 plugins:
-  - serverless-webpack
   - serverless-domain-manager
 
 # serverless-webpack configuration
 # Enable auto-packing of external modules
 custom:
-  webpack:
-    webpackConfig: ./webpack.config.js
-    includeModules: true
   customDomain:
     domainName: api.amitsn.com
     basePath: ""

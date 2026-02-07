@@ -21,13 +21,9 @@
     "@babel/plugin-transform-runtime": "^7.0.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^29.7.0",
-    "babel-loader": "^8.0.0",
     "babel-plugin-source-map-support": "^2.1.2",
     "extend": ">=3.0.2",
-    "jest": "^29.7.0",
-    "serverless-webpack": "^5.15.0",
-    "webpack": "^5.94.0",
-    "webpack-node-externals": "^3.0.0"
+    "jest": "^29.7.0"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.600.0",
