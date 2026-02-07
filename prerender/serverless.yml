@@ -1,4 +1,6 @@
 service: amitsn-blog-prerender
+build:
+  esbuild: false
 provider:
   name: aws
   versionFunctions: false
@@ -25,8 +27,12 @@ provider:
         - logs:PutLogEvents
       Resource: "*"
 plugins:
+  - serverless-webpack
   - serverless-domain-manager
 custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
   objectPrefix: "${self:service}-${self:provider.stage}"
   customDomain:
     domainName: prerender.amitsn.com

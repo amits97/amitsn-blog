@@ -1,11 +1,18 @@
 service: amitsn-blog-api
 
+build:
+  esbuild: false
+
 plugins:
+  - serverless-webpack
   - serverless-domain-manager
 
 # serverless-webpack configuration
 # Enable auto-packing of external modules
 custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
   customDomain:
     domainName: api.amitsn.com
     basePath: ""
