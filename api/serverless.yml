@@ -1,6 +1,5 @@
 service: amitsn-blog-api
 
-# Use the serverless-webpack plugin to transpile ES6
 plugins:
   - serverless-domain-manager
 
