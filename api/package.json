@@ -42,14 +42,12 @@
     "source-map-support": "^0.5.19"
   },
   "overrides": {
-    "fast-xml-parser": ">=5.3.8",
-    "micromatch": ">=4.0.8",
-    "ssri": ">=7.0.0",
-    "braces": ">=3.0.3",
-    "elliptic": ">=6.6.0",
     "@smithy/config-resolver": ">=4.4.0",
-    "terser-webpack-plugin": {
-      "serialize-javascript": ">=7.0.3"
-    }
+    "js-yaml": "^4.2.0"
+  },
+  "allowScripts": {
+    "core-js@2.6.12": true,
+    "fsevents@2.3.3": true,
+    "serverless@4.33.0": true
   }
 }
