@@ -1,8 +1,6 @@
 import { success, failure, redirect, custom } from "./libs/response-lib";
 import * as dynamoDbLib from "./libs/dynamodb-lib";
 
-const chromium = require("@sparticuz/chromium");
-const puppeteer = require("puppeteer-core");
 const axios = require("axios").default;
 const { XMLParser } = require("fast-xml-parser");
 
@@ -60,6 +58,30 @@ function trimUrl(targetUrl) {
   return cleanUrl.replace(/\/$/, "");
 }
 
+const VIEWPORT = {
+  deviceScaleFactor: 1,
+  hasTouch: false,
+  height: 1080,
+  isLandscape: true,
+  isMobile: false,
+  width: 1920,
+};
+
+// ESM-only packages: Lambda's Node runtime cannot require() them
+async function launchBrowser() {
+  const [{ default: chromium }, { default: puppeteer }] = await Promise.all([
+    import("@sparticuz/chromium"),
+    import("puppeteer-core"),
+  ]);
+
+  return puppeteer.launch({
+    args: chromium.args,
+    defaultViewport: VIEWPORT,
+    executablePath: await chromium.executablePath(),
+    headless: "shell",
+  });
+}
+
 export async function handler(event) {
   const ERROR_MESSAGE = "No query parameter given!";
   const INVALID_URL = "Invalid URL!";
@@ -86,12 +108,7 @@ export async function handler(event) {
       return success(cache);
     }
 
-    const browser = await puppeteer.launch({
-      args: chromium.args,
-      defaultViewport: chromium.defaultViewport,
-      executablePath: await chromium.executablePath(),
-      headless: chromium.headless,
-    });
+    const browser = await launchBrowser();
 
     // Allow only URLs from sitemap
     let whitelistedURL;
@@ -116,7 +133,7 @@ export async function handler(event) {
     try {
       let page = await browser.newPage();
       let url = new URL(whitelistedURL);
-      await page.goto(url.href);
+      await page.goto(url.href, { waitUntil: "networkidle2" });
 
       const result = await page.content();
 
